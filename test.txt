@@ -1,0 +1,5 @@
+list
+load
+test.json
+list
+exit

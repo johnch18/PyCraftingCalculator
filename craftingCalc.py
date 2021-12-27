@@ -348,11 +348,14 @@ class Repl:
             print(f"{item} does not have a crafting recipe")
 
     def tree_dialogue(self):
-        print("Enter the desired item to display")
-        item = self.prompt()
+        print("Enter the desired item and amount to display")
+        item, amount = self.get_ingredient()
+        if item is None:
+            print("Invalid item")
+            return
         for i in self.recipes.items:
             if i.name == item:
-                print(i.repr_tree(depth=0))
+                print(i.repr_tree(amt=amount, depth=0))
                 break
         else:
             print("No such item has a recipe")
