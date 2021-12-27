@@ -9,6 +9,7 @@ GPL license bitches, don't be a dick
 import json
 import math
 import os
+import sys
 from typing import List, Union, Dict, Optional, Tuple
 
 VERSION = 1.0
@@ -69,7 +70,7 @@ class Item:
         if name in Item.registry:
             if recipe is not None and Item.registry[name].recipe is not None:
                 raise DuplicateRecipeError("Attempted to add a recipe for an existing item")
-            Item.registry[name].recipe = recipe
+            Item.registry[name].set_recipe(recipe)
             return Item.registry[name]
         else:
             newItem = super(Item, cls).__new__(cls)
@@ -83,7 +84,9 @@ class Item:
         :param recipe: The item recipe
         """
         self.name = name
-        self.recipe = recipe
+        if not hasattr(self, "recipe"):
+            self.recipe = None
+        self.set_recipe(recipe)
 
     def __eq__(self, other: "Item") -> bool:
         """
@@ -105,7 +108,7 @@ class Item:
         Gets a string representation of the Item
         :return: The name
         """
-        return self.name
+        return repr(self.name)
 
     def requires(self, item: "Item") -> bool:
         """
@@ -142,7 +145,7 @@ class Item:
         # Get the number of crafts needed
         numRecipes = math.ceil(amt * (1/self.recipe.output.amount))
         # DEBUG
-        print(self.name, self.recipe.output.amount, amt, self.recipe.output.amount, numRecipes)
+        # print(self.name, self.recipe.output.amount, amt, self.recipe.output.amount, numRecipes)
         # Print yourself
         s += "  " * depth + "-- " + repr(self.recipe.output * numRecipes) + "\n"
         for inp in self.recipe.inputs:
@@ -156,6 +159,10 @@ class Item:
                 i = inp.recipe.output
                 s += i.item.repr_tree(amt=numRecipes*i.amount, depth=depth + 1)
         return s
+
+    def set_recipe(self, recipe: Optional["Recipe"]):
+        if recipe is not None:
+            self.recipe = recipe
 
 
 class Ingredient:
@@ -396,7 +403,7 @@ class Repl:
                "recipes\nprint - Prints the recipe for an item\ntree - Prints the Crafting Tree for a Recipe"
     # Just what's printed when you beg the gods for help
 
-    def __init__(self):
+    def __init__(self, fileName: Optional[str] = None):
         """
         Just initializes some stuff, nothing fancy
         """
@@ -404,6 +411,8 @@ class Repl:
         self.running = True
         self.prompt_str = ">>>"
         self.saved = False
+        if fileName is not None:
+            self.load(fileName)
 
     def repl(self):
         """
@@ -444,7 +453,7 @@ class Repl:
         if com == "help":
             print(Repl.HELP_MSG)
         if com == "add":
-            self.add_command()
+            self.add_dialogue()
         if com == "list":
             for item in self.recipes.items:
                 print(item.recipe)
@@ -459,7 +468,7 @@ class Repl:
         if com == "tree":
             self.tree_dialogue()
 
-    def add_command(self):
+    def add_dialogue(self):
         """
         The add command, adds a recipe to the book
         :return:
@@ -475,6 +484,7 @@ class Repl:
         item = Item(item)
         item = Item(item.name, Recipe(Ingredient(item, amount)))
         print("\nPress Ctrl+C to exit")
+        print("\t", self.recipes.items)
         try:
             # Add ingredients from user input
             while True:
@@ -482,7 +492,7 @@ class Repl:
                 inp, amount = self.get_ingredient()
                 if inp is None:
                     continue
-                i = Item(inp, None)
+                i = Item(inp)
                 ing = Ingredient(i, amount)
                 item.recipe.add_ingredient(ing)
         # Catch those pesky KeyboardInterrupts
@@ -641,7 +651,12 @@ def main():
     Main method bois
     :return:
     """
-    repl = Repl()
+    argv = sys.argv
+    argc = len(argv)
+    if argc > 1:
+        repl = Repl(argv[1])
+    else:
+        repl = Repl()
     repl.repl()
 
 
