@@ -68,14 +68,16 @@ class Item:
 
     def repr_tree(self, amt=1, depth=0):
         s = str()
-        mult = self.recipe.output.amount * math.ceil(1 / amt)
-        s += "  " * depth + "-- " + repr(self.recipe.output * mult) + "\n"
+        numRecipes = math.ceil(amt * (1/self.recipe.output.amount))
+        print(self.name, self.recipe.output.amount, amt, self.recipe.output.amount, numRecipes)
+        s += "  " * depth + "-- " + repr(self.recipe.output * numRecipes) + "\n"
         for inp in self.recipe.inputs:
             if inp.recipe is None:
                 s += "  " * (depth + 1) + "-- " + repr(inp) + "\n"
                 continue
-            i = inp.recipe.output
-            s += i.item.repr_tree(amt=i.amount * mult, depth=depth + 1)
+            else:
+                i = inp.recipe.output
+                s += i.item.repr_tree(amt=numRecipes*i.amount, depth=depth + 1)
         return s
 
 
