@@ -149,7 +149,7 @@ class Item:
             # Check if recipe exists
             if inp.recipe is None:
                 # If not, just print the item
-                s += "  " * (depth + 1) + "-- " + repr(inp) + "\n"
+                s += "  " * (depth + 1) + "-- " + repr(inp * numRecipes) + "\n"
                 continue
             else:
                 # If it does, print the tree of this item
