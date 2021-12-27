@@ -291,7 +291,10 @@ class Repl:
             return None, None
 
     def prompt(self):
-        return input(f"{self.prompt_str} ")
+        try:
+            return input(f"{self.prompt_str} ")
+        except EOFError:
+            return ""
 
     def save_dialogue(self):
         print("Enter a file to save to.")
