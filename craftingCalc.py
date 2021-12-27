@@ -201,7 +201,7 @@ class Ingredient:
         Returns the string representation of the ingredient
         :return: ^
         """
-        return f"{self.amount} {repr(self.item)}"
+        return f"{repr(self.item)}({self.amount})"
 
     def __add__(self, other: Union[int, "Ingredient"]) -> "Ingredient":
         """
@@ -240,10 +240,10 @@ class Ingredient:
         """
         return self.item == other.item
 
-    def get_net_cost(self, number=1, depth=0) -> dict:
+    def get_net_cost(self, numRecipes=1, depth=0) -> dict:
         """
         Recursively gathers all ingredients in the recipe
-        :param number: Number of items to craft
+        :param numRecipes: Number of items to craft
         :param depth: Number of iterations
         :return: The net crafting cost
         """
@@ -253,15 +253,16 @@ class Ingredient:
             raise RecursionDepthError(f"Maximum depth ({Ingredient.MAX_DEPTH} steps) reached")
         # Check if recipe exists, if not return self
         if self.recipe is None:
-            return {self.item: Ingredient(self.item, 1)}
+            return {self.item: Ingredient(self.item, numRecipes)}
+        factor = math.ceil(numRecipes / self.recipe.output.amount)
         # Iterate through inputs and calculate their costs
         for inp in self.recipe.inputs:
-            amount = math.ceil(number / inp.amount)
+            # numRecipes = math.ceil(inp.amount / numRecipes)
             # Add costs to self
-            for item, ingredient in inp.get_net_cost(amount, depth + 1):
+            for item, ingredient in inp.get_net_cost(inp.amount * factor, depth + 1).items():
                 # No key errors for you
                 if item not in result:
-                    result[item] = 0
+                    result[item] = Ingredient(item, 0)
                 result[item] += ingredient
         return result
 
@@ -400,7 +401,8 @@ class Repl:
     """
     HELP_MSG = "Valid commands are:\nexit - Kills the shell\nhelp - Lists commands\nadd - Adds Recipe\nremove - " \
                "Deletes Recipe\nsave - Saves Recipes to file\nload - Loads Recipes from file\nlist - Prints all " \
-               "recipes\nprint - Prints the recipe for an item\ntree - Prints the Crafting Tree for a Recipe"
+               "recipes\nprint - Prints the recipe for an item\ntree - Prints the Crafting Tree for a Recipe\ncost - " \
+               "Lists the net cost of an item "
     # Just what's printed when you beg the gods for help
 
     def __init__(self, fileName: Optional[str] = None):
@@ -467,6 +469,8 @@ class Repl:
             self.print_dialogue()
         if com == "tree":
             self.tree_dialogue()
+        if com == "cost":
+            self.cost_dialogue()
 
     def add_dialogue(self):
         """
@@ -607,8 +611,8 @@ class Repl:
                 self.recipes.items.pop(index)
                 break
         else:
-            return True
-        return False
+            return False
+        return True
 
     def print_dialogue(self):
         """
@@ -644,6 +648,18 @@ class Repl:
                 break
         else:
             print("No such item has a recipe")
+
+    def cost_dialogue(self):
+        """
+        Prints the net cost of the item
+        :return:
+        """
+        print("Enter the item and amount you wish to craft")
+        itemName, amount = self.get_ingredient()
+        item = Item(itemName)
+        ing = Ingredient(item, amount)
+        for i, amt in ing.get_net_cost(amount).items():
+            print(i, amt)
 
 
 def main():
