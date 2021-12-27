@@ -163,7 +163,7 @@ class Ingredient:
     Stores an item and how much of it exists
     Use liters for fluids, e.g. 1 bucket of water would be 1000 Water
     """
-    MAX_DEPTH = 1000 # Maximum amount of crafting steps allowed
+    MAX_DEPTH = 1000  # Maximum amount of crafting steps allowed
 
     def __init__(self, item: Item, amount: int):
         """
@@ -389,11 +389,11 @@ class RecipeBook:
 class Repl:
     """
     Shitty REPL implementation to allow testing and basic usage. I hate it. I want it gone. I need to make an actual lib
-    for this shit.
+    for this shit. More than anything I need a GUI but Tkinter gives me cancer
     """
     HELP_MSG = "Valid commands are:\nexit - Kills the shell\nhelp - Lists commands\nadd - Adds Recipe\nremove - " \
                "Deletes Recipe\nsave - Saves Recipes to file\nload - Loads Recipes from file\nlist - Prints all " \
-               "recipes\nprint - Prints the recipe for an item\ntree - Prints the Crafting Tree for a recipe"
+               "recipes\nprint - Prints the recipe for an item\ntree - Prints the Crafting Tree for a Recipe"
     # Just what's printed when you beg the gods for help
 
     def __init__(self):
@@ -417,7 +417,7 @@ class Repl:
             while self.running:
                 inp = self.prompt()
                 self.process_command(inp)
-        except KeyboardInterrupt as e:
+        except KeyboardInterrupt as _:
             pass
         # Check if recipes have been saved
         if not self.saved:
@@ -504,7 +504,7 @@ class Repl:
             amount = int(amount)
             return itemName, amount
         # Ignore errors with unpacking the tuple or getting the int
-        except ValueError as e:
+        except ValueError as _:
             # print(e)
             print("Invalid input")
             return None, None
