@@ -4,8 +4,7 @@
 Made by johnch18 on 12/27/21
 GPL license bitches, don't be a dick
 """
-
-
+import enum
 import json
 import math
 import os
@@ -108,7 +107,7 @@ class Item:
         Gets a string representation of the Item
         :return: The name
         """
-        return repr(self.name)
+        return self.name
 
     def requires(self, item: "Item") -> bool:
         """
@@ -143,7 +142,7 @@ class Item:
         """
         s = str()
         # Get the number of crafts needed
-        numRecipes = math.ceil(amt * (1/self.recipe.output.amount))
+        numRecipes = math.ceil(amt * (1 / self.recipe.output.amount))
         # DEBUG
         # print(self.name, self.recipe.output.amount, amt, self.recipe.output.amount, numRecipes)
         # Print yourself
@@ -157,7 +156,7 @@ class Item:
             else:
                 # If it does, print the tree of this item
                 i = inp.recipe.output
-                s += i.item.repr_tree(amt=numRecipes*i.amount, depth=depth + 1)
+                s += i.item.repr_tree(amt=numRecipes * i.amount, depth=depth + 1)
         return s
 
     def set_recipe(self, recipe: Optional["Recipe"]):
@@ -272,6 +271,7 @@ class Recipe:
     Stores an output ingredient and a list of input ingredients
     TODO: Add multiple outputs
     """
+
     def __init__(self, output: Ingredient, inputs: Optional[List[Ingredient]] = None):
         """
         Initializes Recipe with input and outputs
@@ -344,10 +344,83 @@ class Recipe:
         return result
 
 
+class IOGadget:
+    """
+    Allows formatting of IO
+    """
+
+    class Colors(enum.IntEnum):
+        """
+        Color enum
+        """
+        BLACK = enum.auto()
+        RED = enum.auto()
+        GREEN = enum.auto()
+        YELLOW = enum.auto()
+        BLUE = enum.auto()
+        MAGENTA = enum.auto()
+        CYAN = enum.auto()
+        WHITE = enum.auto()
+
+    def __init__(self, ostream=sys.stdout, istream=sys.stdin):
+        """
+        Initializer for IOGadget
+        """
+        self.ostream = ostream
+        self.istream = istream
+
+    def put(self, text):
+        """
+        Writes to stdout
+        :param text: the text to print
+        :return:
+        """
+        self.ostream.write(text)
+
+    def get(self) -> str:
+        """
+        :return: The string gotten from stdin
+        """
+        return self.istream.read()
+
+    @staticmethod
+    def formatted(text, color=0, og_color=0, italicized=False, bolded=False, end="\n") -> str:
+        """
+        Applies terminal formatting
+        :param text: text to be formatted
+        :param color: color to print
+        :param og_color: original color
+        :param italicized: whether it's italicized
+        :param bolded: whether it's bolded
+        :param end: what to add at the end
+        :return:
+        """
+        col_offset = 30
+        form = lambda fstr: f"\033[{fstr}m"
+        st = f"{color + col_offset}"
+        if italicized:
+            st += ";3"
+        if bolded:
+            st += ";1"
+        s = f"{form(st)}{str(text)}{form(og_color + col_offset)}{end}"
+        # print(repr(s))
+        return s
+
+    def put_line(self, text, **fmt):
+        """
+        Prints a line of input
+        :param text: text to print
+        :param fmt: format string
+        :return:
+        """
+        self.put(self.formatted(text, **fmt))
+
+
 class RecipeBook:
     """
     Stores a collection of recipes
     """
+
     def __init__(self):
         """
         C'mon, really?
@@ -403,6 +476,7 @@ class Repl:
                "Deletes Recipe\nsave - Saves Recipes to file\nload - Loads Recipes from file\nlist - Prints all " \
                "recipes\nprint - Prints the recipe for an item\ntree - Prints the Crafting Tree for a Recipe\ncost - " \
                "Lists the net cost of an item "
+
     # Just what's printed when you beg the gods for help
 
     def __init__(self, fileName: Optional[str] = None):
@@ -659,7 +733,7 @@ class Repl:
         item = Item(itemName)
         ing = Ingredient(item, amount)
         for i, amt in ing.get_net_cost(amount).items():
-            print(i, amt)
+            print(amt)
 
 
 def main():

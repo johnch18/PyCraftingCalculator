@@ -1,1 +1,20 @@
-{"craftingBench": {"amt": 1, "ing": [{"name": "woodPlank", "amt": 4}]}, "woodPlank": {"amt": 4, "ing": [{"name": "woodLog", "amt": 1}]}}
+{
+  "craftingBench": {
+    "amt": 1,
+    "ing": [
+      {
+        "name": "woodPlank",
+        "amt": 4
+      }
+    ]
+  },
+  "woodPlank": {
+    "amt": 4,
+    "ing": [
+      {
+        "name": "woodLog",
+        "amt": 1
+      }
+    ]
+  }
+}
