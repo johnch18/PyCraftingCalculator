@@ -84,7 +84,7 @@ class Item:
         """
         self.name = name
         if not hasattr(self, "recipe"):
-            self.recipe = None
+            self.recipe: Optional[Recipe] = None
         self.set_recipe(recipe)
 
     def __eq__(self, other: "Item") -> bool:
@@ -140,24 +140,18 @@ class Item:
         :param depth: How many steps the current craft is
         :return: Returns the string repr of the tree
         """
-        s = str()
-        # Get the number of crafts needed
-        numRecipes = math.ceil(amt * (1 / self.recipe.output.amount))
-        # DEBUG
-        # print(self.name, self.recipe.output.amount, amt, self.recipe.output.amount, numRecipes)
-        # Print yourself
-        s += "  " * depth + "-- " + repr(self.recipe.output * numRecipes) + "\n"
-        for inp in self.recipe.inputs:
-            # Check if recipe exists
-            if inp.recipe is None:
-                # If not, just print the item
-                s += "  " * (depth + 1) + "-- " + repr(inp * numRecipes) + "\n"
-                continue
-            else:
-                # If it does, print the tree of this item
-                i = inp.recipe.output
-                s += i.item.repr_tree(amt=numRecipes * i.amount, depth=depth + 1)
+        print(">> ", self.name, amt, depth)
+        if self.recipe is None:
+            return ""
+        s = ""
+        factor = math.ceil(amt / self.recipe.output.amount)
+        ing = Ingredient(self, amt)
+        s += f"{'  '*depth}-- {ing}\n"
+        for i in self.recipe.inputs:
+            namt = i.amount * factor
+            s += i.item.repr_tree(namt, depth + 1)
         return s
+
 
     def set_recipe(self, recipe: Optional["Recipe"]):
         if recipe is not None:
@@ -713,12 +707,14 @@ class Repl:
         """
         print("Enter the desired item and amount to display")
         item, amount = self.get_ingredient()
+        It = Item(item)
+        factor = math.ceil(amount / It.recipe.output.amount)
         if item is None:
             print("Invalid item")
             return
         for i in self.recipes.items:
             if i.name == item:
-                print(i.repr_tree(amt=amount, depth=0))
+                print(i.repr_tree(amt=factor * i.recipe.output.amount, depth=0))
                 break
         else:
             print("No such item has a recipe")
