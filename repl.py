@@ -95,7 +95,7 @@ class Repl:
             return self.istream.readline()
 
         def err(self, text, fg=ColorEnum.RED, **fmt):
-            self.estream.write(text, fg, **fmt)
+            self.estream.write(self.format_text(text, fg, **fmt))
             self.estream.flush()
 
     def __init__(self, istream=sys.stdin, ostream=sys.stdout, estream=sys.stderr):
@@ -107,9 +107,13 @@ class Repl:
 
     def repl(self):
         while self.running:
-            self.get_command()
+            try:
+                self.get_command()
+            except KeyboardInterrupt:
+                self.on_keyboard_interrupt()
+        self.println("")
 
-    def prompt(self, text=">>> ", bolded=True, blinking=True, **fmt):
+    def prompt(self, text=">>> ", bolded=True, blinking=False, **fmt):
         v = self.io.get(prompt=text, bolded=bolded, blinking=blinking, **fmt).strip()
         self.history.append(v)
         return v
@@ -133,7 +137,10 @@ class Repl:
         self.io.put(f"{text}\n")
 
     def printerr(self, err):
-        self.io.err(err)
+        self.io.err(f"{err}\n")
+
+    def on_keyboard_interrupt(self):
+        self.running = False
 
 
 def main():
