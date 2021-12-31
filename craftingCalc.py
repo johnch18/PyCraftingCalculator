@@ -27,6 +27,7 @@ class IncompatibleIngredientException(CraftingCalcException):
 class RecursiveRecipeException(CraftingCalcException):
     pass
 
+
 class CompatibilityException(CraftingCalcException):
     pass
 
@@ -36,7 +37,7 @@ class Component:
 
     def __new__(cls, name: str, recipe: Optional["Recipe"] = None):
         if name not in Component.COMPONENT_REGISTRY:
-            newComponent = Component(name, recipe)
+            newComponent = super(Component, cls).__new__(cls)
             Component.COMPONENT_REGISTRY[name] = newComponent
             return newComponent
         else:
@@ -114,8 +115,9 @@ class Recipe:
 
     def validate(self):
         for i in self.inputs:
-            if i.component.recipe.requires(i.component):
-                raise RecursiveRecipeException(f"Recipe for {i} requires {i}")
+            if i.component.recipe is not None:
+                if i.component.recipe.requires(i.component):
+                    raise RecursiveRecipeException(f"Recipe for {i} requires {i}")
 
     def add_input(self, ing: Ingredient):
         for e, i in enumerate(self.inputs):
