@@ -27,6 +27,12 @@ class RecipeRepl(repl.Repl):
             return
 
     def save_dialog(self):
-        pass
+        fileName = self.prompt("Please enter a file to save to: ")
+        try:
+            self.recipeBook.dump_to_file(fileName)
+        except Exception as e:
+            self.printerr(e)
+        else:
+            self.println("File successfully saved")
 
     
