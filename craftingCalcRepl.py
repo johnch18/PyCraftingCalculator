@@ -5,6 +5,10 @@ import craftingCalc
 import repl
 
 
+class IncorrectArgumentException(craftingCalc.CraftingCalcException):
+    pass
+
+
 class AddRecipeCommand(repl.Command):
 
     @staticmethod
@@ -16,8 +20,9 @@ class AddRecipeCommand(repl.Command):
             ingredient = craftingCalc.Ingredient(itemObject, int(amount))
             recipe.add_output(ingredient)
         try:
+            rpl.println("Please enter ingredients, or press Ctrl+C or type exit to exit")
             while True:
-                r = rpl.prompt("Please enter an ingredient, or press Cntl+C or type 'exit' to exit > ")
+                r = rpl.prompt("\t> ")
                 if r == "exit":
                     break
                 itemName, amount = r.split(":")
@@ -25,9 +30,9 @@ class AddRecipeCommand(repl.Command):
                 ing = craftingCalc.Ingredient(item, int(amount))
                 recipe.add_input(ing)
         except KeyboardInterrupt:
-            pass
+            rpl.println("")
         finally:
-            rpl.recipeBook.recipes.append(recipe)
+            rpl.recipeBook.add_recipe(recipe)
 
     keyword = "add"
     help_msg = """Usage: add [*{outputName:amount}]
@@ -35,31 +40,86 @@ class AddRecipeCommand(repl.Command):
     """
 
 
+class ListRecipeCommand(repl.Command):
+
+    @staticmethod
+    def action(rpl, *_, **__):
+        if len(_) > 0:
+            r = set()
+            for item in _:
+                item = craftingCalc.Component(item)
+                for recipe in rpl.recipeBook:
+                    if item in recipe.inputs or item in recipe.outputs:
+                        r.add(recipe)
+            for recipe in r:
+                rpl.println(recipe)
+        else:
+            for recipe in rpl.recipeBook:
+                rpl.println(recipe)
+
+    keyword = "list"
+    help_msg = """Usage: list [*items/fluids]
+    Lists the recipes stored, or lists all recipes involving the items/fluids.
+    """
+
+
+class SaveCommand(repl.Command):
+
+    @staticmethod
+    def action(rpl, *_, **__):
+        if len(_) <= 0:
+            raise IncorrectArgumentException("Missing argument 'fileName'")
+        else:
+            fileName = _[0]
+            rpl.recipeBook.dump_to_file(fileName)
+            rpl.println(f"Successfully saved to '{fileName}'")
+
+    keyword = "save"
+    help_msg = """Usage: save fileName
+    Saves the recipes to a file.
+    """
+
+
+class TreeCommand(repl.Command):
+
+    @staticmethod
+    def action(rpl, *_, **__):
+        if len(_) <= 0:
+            raise IncorrectArgumentException("Missing argument item/fluid")
+        component, amount = _[0].split(":")
+        ing = craftingCalc.Ingredient(component, int(amount))
+
+    keyword = "tree"
+    help_msg = """Usage: tree item/fluid
+    Prints the crafting tree of the item.
+    """
+
+
 class RecipeRepl(repl.Repl):
-    RECIPE_COMMANDS = [AddRecipeCommand]
+    RECIPE_COMMANDS = [AddRecipeCommand, ListRecipeCommand, SaveCommand]
 
     def __init__(self, fileName=None):
         super().__init__()
         self.recipeBook = craftingCalc.RecipeBook(fileName)
         self.load_recipe_commands()
         self.println("The default format for an ingredient is [ITEM/FLUIDNAME]:AMOUNT")
+        self.println("Enter help for help or exit for exit.")
 
-    def on_keyboard_interrupt(self):
+    def on_exit(self):
         if self.recipeBook.dirty:
             self.unsaved_changes_dialog()
-        super().on_keyboard_interrupt()
+        super().on_exit()
 
     def load_recipe_commands(self):
         for command in RecipeRepl.RECIPE_COMMANDS:
             self.commands[command.keyword] = command
 
     def unsaved_changes_dialog(self):
-        self.println("You have unsaved changed, would you like to save them? [y/n]")
+        self.println("\nYou have unsaved changed, would you like to save them? [y/n]")
         answer = self.prompt().lower()
         if answer == "y":
             self.save_dialog()
-        else:
-            return
+        self.println("")
 
     def save_dialog(self):
         fileName = self.prompt("Please enter a file to save to: ")

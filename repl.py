@@ -19,16 +19,16 @@ class Command(ABC):
 
 class HelpCommand(Command):
     @staticmethod
-    def action(repl, *args, **kwargs):
+    def action(rpl, *args, **kwargs):
         if len(args) > 0:
             for c in args:
-                if c in repl.commands:
-                    repl.println(f"{c}:\n{repl.commands[c].help_msg}")
+                if c in rpl.commands:
+                    rpl.println(f"{c}:\n{rpl.commands[c].help_msg}")
                 else:
-                    repl.printerr(f"Unable to find command {c}")
+                    rpl.printerr(f"Unable to find command {c}")
         else:
-            for c in repl.commands:
-                repl.println(c)
+            for c in rpl.commands:
+                rpl.println(c)
 
     keyword = "help"
     help_msg = """Usage: help [*commands]
@@ -40,10 +40,11 @@ class ExitCommand(Command):
 
     @staticmethod
     def action(repl, *_, **__):
-        repl.running = False
+        repl.on_exit()
 
     keyword = "exit"
-    help_msg = """"""
+    help_msg = """Usage: exit
+    """
 
 
 class Repl:
@@ -140,6 +141,9 @@ class Repl:
         self.io.err(f"{err}\n")
 
     def on_keyboard_interrupt(self):
+        self.on_exit()
+
+    def on_exit(self):
         self.running = False
 
 

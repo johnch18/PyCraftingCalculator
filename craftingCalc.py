@@ -78,6 +78,9 @@ class Ingredient:
     def __mul__(self, scale: int):
         return Ingredient(self.component, self.amount * scale)
 
+    def __str__(self):
+        return f"{self.component.name}:{self.amount}"
+
     def same_type(self, other: "Ingredient") -> bool:
         return self.component == other.component
 
@@ -85,15 +88,12 @@ class Ingredient:
         return self.component == comp
 
     @classmethod
-    def load_from_json(cls, d: dict) -> "Ingredient":
-        name = d["n"]
-        amt = d["a"]
+    def load_from_json(cls, d: str) -> "Ingredient":
+        name, amt = d.split(";")
         return Ingredient(Component(name), int(amt))
 
-    def dump_to_json(self) -> dict:
-        d = dict()
-        d["n"] = self.component.name
-        d["a"] = self.amount
+    def dump_to_json(self) -> str:
+        d = f"{self.component.name}:{self.amount}"
         return d
 
 
@@ -102,6 +102,12 @@ class Recipe:
         self.inputs = inputs
         self.outputs = outputs
         self.validate()
+
+    def __repr__(self):
+        return f"{' + '.join(str(s) for s in self.outputs)} <- {' + '.join(str(s) for s in self.inputs)}"
+
+    def __hash__(self):
+        return hash(self.inputs) + hash(self.outputs)
 
     def requires(self, comp: Component) -> bool:
         Q = self.inputs[:]
@@ -158,6 +164,11 @@ class Recipe:
             result[1].append(out.dump_to_json())
         return result
 
+    def cost(self, ing: Ingredient) -> Dict[str, Ingredient]:
+        result = dict()
+        component = ing.component
+        return result
+
 
 class RecipeBook:
     def __init__(self, fileName: str = None):
@@ -165,6 +176,9 @@ class RecipeBook:
         self.dirty = False
         if fileName is not None:
             self.load_from_file(fileName)
+
+    def __iter__(self):
+        return iter(self.recipes)
 
     def load_from_file(self, fileName: str):
         with open(fileName, "r") as file:
@@ -182,6 +196,10 @@ class RecipeBook:
                 d["r"].append(recipe.dump_to_json())
             json.dump(d, file)
         self.dirty = False
+
+    def add_recipe(self, recipe: Recipe):
+        self.recipes.append(recipe)
+        self.dirty = True
 
 
 def main():
