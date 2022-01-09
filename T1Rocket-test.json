@@ -4,27 +4,33 @@
     "ing": [
       {
         "name": "freqModule",
-        "amt": 1
+        "amt": 1,
+        "enabled": true
       },
       {
         "name": "compressedSteel",
-        "amt": 3
+        "amt": 3,
+        "enabled": true
       },
       {
         "name": "seat",
-        "amt": 1
+        "amt": 1,
+        "enabled": true
       },
       {
         "name": "compressedBronze",
-        "amt": 1
+        "amt": 1,
+        "enabled": true
       },
       {
         "name": "steelPole",
-        "amt": 2
+        "amt": 2,
+        "enabled": true
       },
       {
         "name": "booster1",
-        "amt": 1
+        "amt": 1,
+        "enabled": true
       }
     ],
     "enabled": true
@@ -34,15 +40,18 @@
     "ing": [
       {
         "name": "redLamp",
-        "amt": 1
+        "amt": 1,
+        "enabled": true
       },
       {
         "name": "stainlessScrew",
-        "amt": 2
+        "amt": 2,
+        "enabled": true
       },
       {
         "name": "heavyDutyPlate1",
-        "amt": 4
+        "amt": 4,
+        "enabled": true
       }
     ],
     "enabled": true
@@ -52,11 +61,13 @@
     "ing": [
       {
         "name": "compressedSteel",
-        "amt": 2
+        "amt": 2,
+        "enabled": true
       },
       {
         "name": "heavyDutyPlate1",
-        "amt": 4
+        "amt": 4,
+        "enabled": true
       }
     ],
     "enabled": true
@@ -66,23 +77,28 @@
     "ing": [
       {
         "name": "keyboard",
-        "amt": 1
+        "amt": 1,
+        "enabled": true
       },
       {
         "name": "emitterHV",
-        "amt": 1
+        "amt": 1,
+        "enabled": true
       },
       {
         "name": "sensorHV",
-        "amt": 1
+        "amt": 1,
+        "enabled": true
       },
       {
         "name": "display",
-        "amt": 1
+        "amt": 1,
+        "enabled": true
       },
       {
         "name": "heavyDutyPlate1",
-        "amt": 1
+        "amt": 1,
+        "enabled": true
       }
     ],
     "enabled": true
@@ -92,19 +108,23 @@
     "ing": [
       {
         "name": "compressedBronze",
-        "amt": 1
+        "amt": 1,
+        "enabled": true
       },
       {
         "name": "compressedAluminium",
-        "amt": 1
+        "amt": 1,
+        "enabled": true
       },
       {
         "name": "compressedSteel",
-        "amt": 1
+        "amt": 1,
+        "enabled": true
       },
       {
         "name": "liquidStainlessSteel",
-        "amt": 72
+        "amt": 72,
+        "enabled": true
       }
     ],
     "enabled": true
@@ -114,19 +134,23 @@
     "ing": [
       {
         "name": "stainlessScrew",
-        "amt": 4
+        "amt": 4,
+        "enabled": true
       },
       {
         "name": "blankFuelTank",
-        "amt": 1
+        "amt": 1,
+        "enabled": true
       },
       {
         "name": "doubleCompressedBronze",
-        "amt": 1
+        "amt": 1,
+        "enabled": true
       },
       {
         "name": "doubleCompressedAluminium",
-        "amt": 1
+        "amt": 1,
+        "enabled": true
       }
     ],
     "enabled": true
@@ -136,19 +160,23 @@
     "ing": [
       {
         "name": "sensorHV",
-        "amt": 1
+        "amt": 1,
+        "enabled": true
       },
       {
         "name": "computerMonitor",
-        "amt": 1
+        "amt": 1,
+        "enabled": true
       },
       {
         "name": "compressedAluminium",
-        "amt": 2
+        "amt": 2,
+        "enabled": true
       },
       {
         "name": "compressedTin",
-        "amt": 2
+        "amt": 2,
+        "enabled": true
       }
     ],
     "enabled": true
@@ -158,7 +186,8 @@
     "ing": [
       {
         "name": "stainlessSteel",
-        "amt": 1
+        "amt": 1,
+        "enabled": true
       }
     ],
     "enabled": true
@@ -168,23 +197,28 @@
     "ing": [
       {
         "name": "sdhc",
-        "amt": 2
+        "amt": 2,
+        "enabled": true
       },
       {
         "name": "emptyCanister",
-        "amt": 1
+        "amt": 1,
+        "enabled": true
       },
       {
         "name": "firebox",
-        "amt": 1
+        "amt": 1,
+        "enabled": true
       },
       {
         "name": "activityDetector",
-        "amt": 1
+        "amt": 1,
+        "enabled": true
       },
       {
         "name": "heavyDutyPlate1",
-        "amt": 4
+        "amt": 4,
+        "enabled": true
       }
     ],
     "enabled": true
@@ -194,15 +228,18 @@
     "ing": [
       {
         "name": "rawSDHC",
-        "amt": 1
+        "amt": 1,
+        "enabled": true
       },
       {
         "name": "powderBarrel",
-        "amt": 10
+        "amt": 10,
+        "enabled": true
       },
       {
         "name": "iTNT",
-        "amt": 1
+        "amt": 1,
+        "enabled": true
       }
     ],
     "enabled": true
@@ -212,19 +249,23 @@
     "ing": [
       {
         "name": "stainlessScrew",
-        "amt": 4
+        "amt": 4,
+        "enabled": true
       },
       {
         "name": "doubleCompressedBronze",
-        "amt": 1
+        "amt": 1,
+        "enabled": true
       },
       {
         "name": "doubleCompressedAluminium",
-        "amt": 1
+        "amt": 1,
+        "enabled": true
       },
       {
         "name": "compressedCoal",
-        "amt": 1
+        "amt": 1,
+        "enabled": true
       }
     ],
     "enabled": true
@@ -234,11 +275,13 @@
     "ing": [
       {
         "name": "rubberSheet",
-        "amt": 3
+        "amt": 3,
+        "enabled": true
       },
       {
         "name": "compressedSteel",
-        "amt": 5
+        "amt": 5,
+        "enabled": true
       }
     ],
     "enabled": true
@@ -248,7 +291,8 @@
     "ing": [
       {
         "name": "compressedSteel",
-        "amt": 2
+        "amt": 2,
+        "enabled": true
       }
     ],
     "enabled": true
@@ -258,7 +302,8 @@
     "ing": [
       {
         "name": "compressedSteel",
-        "amt": 8
+        "amt": 8,
+        "enabled": true
       }
     ],
     "enabled": true
@@ -268,27 +313,33 @@
     "ing": [
       {
         "name": "T1Rocket",
-        "amt": 1
+        "amt": 1,
+        "enabled": true
       },
       {
         "name": "emptyCanister",
-        "amt": 4
+        "amt": 4,
+        "enabled": true
       },
       {
         "name": "fuelLoader",
-        "amt": 2
+        "amt": 2,
+        "enabled": true
       },
       {
         "name": "launchPad",
-        "amt": 9
+        "amt": 9,
+        "enabled": true
       },
       {
         "name": "spaceSuit",
-        "amt": 1
+        "amt": 1,
+        "enabled": true
       },
       {
         "name": "rocketAssembler",
-        "amt": 1
+        "amt": 1,
+        "enabled": true
       }
     ],
     "enabled": true
@@ -298,11 +349,13 @@
     "ing": [
       {
         "name": "steelRing",
-        "amt": 4
+        "amt": 4,
+        "enabled": true
       },
       {
         "name": "compressedSteel",
-        "amt": 4
+        "amt": 4,
+        "enabled": true
       }
     ],
     "enabled": true
@@ -312,7 +365,8 @@
     "ing": [
       {
         "name": "stainlessBolt",
-        "amt": 1
+        "amt": 1,
+        "enabled": true
       }
     ],
     "enabled": true
@@ -322,7 +376,8 @@
     "ing": [
       {
         "name": "stainlessSteel",
-        "amt": 1
+        "amt": 1,
+        "enabled": true
       }
     ],
     "enabled": true
@@ -332,7 +387,8 @@
     "ing": [
       {
         "name": "steel",
-        "amt": 1
+        "amt": 1,
+        "enabled": true
       }
     ],
     "enabled": true
@@ -342,7 +398,8 @@
     "ing": [
       {
         "name": "steel",
-        "amt": 8
+        "amt": 8,
+        "enabled": true
       }
     ],
     "enabled": true
@@ -352,27 +409,33 @@
     "ing": [
       {
         "name": "compressedSteel",
-        "amt": 2
+        "amt": 2,
+        "enabled": true
       },
       {
         "name": "pumpHV",
-        "amt": 1
+        "amt": 1,
+        "enabled": true
       },
       {
         "name": "steelCell",
-        "amt": 1
+        "amt": 1,
+        "enabled": true
       },
       {
         "name": "motorHV",
-        "amt": 1
+        "amt": 1,
+        "enabled": true
       },
       {
         "name": "compressedAluminium",
-        "amt": 2
+        "amt": 2,
+        "enabled": true
       },
       {
         "name": "steelPipe",
-        "amt": 1
+        "amt": 1,
+        "enabled": true
       }
     ],
     "enabled": true
@@ -382,15 +445,18 @@
     "ing": [
       {
         "name": "compressedIron",
-        "amt": 3
+        "amt": 3,
+        "enabled": true
       },
       {
         "name": "advancedAlloy",
-        "amt": 3
+        "amt": 3,
+        "enabled": true
       },
       {
         "name": "ironBlock",
-        "amt": 3
+        "amt": 3,
+        "enabled": true
       }
     ],
     "enabled": true
@@ -400,7 +466,8 @@
     "ing": [
       {
         "name": "steel",
-        "amt": 3
+        "amt": 3,
+        "enabled": true
       }
     ],
     "enabled": true
@@ -410,15 +477,18 @@
     "ing": [
       {
         "name": "steel",
-        "amt": 8
+        "amt": 8,
+        "enabled": true
       },
       {
         "name": "bronze",
-        "amt": 1
+        "amt": 1,
+        "enabled": true
       },
       {
         "name": "iTNT",
-        "amt": 1
+        "amt": 1,
+        "enabled": true
       }
     ],
     "enabled": true
@@ -428,15 +498,18 @@
     "ing": [
       {
         "name": "aluminium",
-        "amt": 3
+        "amt": 3,
+        "enabled": true
       },
       {
         "name": "powderBarrel",
-        "amt": 4
+        "amt": 4,
+        "enabled": true
       },
       {
         "name": "iTNT",
-        "amt": 1
+        "amt": 1,
+        "enabled": true
       }
     ],
     "enabled": true
@@ -446,15 +519,18 @@
     "ing": [
       {
         "name": "bronze",
-        "amt": 3
+        "amt": 3,
+        "enabled": true
       },
       {
         "name": "powderBarrel",
-        "amt": 4
+        "amt": 4,
+        "enabled": true
       },
       {
         "name": "iTNT",
-        "amt": 1
+        "amt": 1,
+        "enabled": true
       }
     ],
     "enabled": true
@@ -464,15 +540,18 @@
     "ing": [
       {
         "name": "coalBlock",
-        "amt": 1
+        "amt": 1,
+        "enabled": true
       },
       {
         "name": "powderBarrel",
-        "amt": 2
+        "amt": 2,
+        "enabled": true
       },
       {
         "name": "iTNT",
-        "amt": 1
+        "amt": 1,
+        "enabled": true
       }
     ],
     "enabled": true
@@ -482,15 +561,18 @@
     "ing": [
       {
         "name": "iron",
-        "amt": 3
+        "amt": 3,
+        "enabled": true
       },
       {
         "name": "powderBarrel",
-        "amt": 4
+        "amt": 4,
+        "enabled": true
       },
       {
         "name": "iTNT",
-        "amt": 1
+        "amt": 1,
+        "enabled": true
       }
     ],
     "enabled": true
@@ -500,7 +582,8 @@
     "ing": [
       {
         "name": "iron",
-        "amt": 9
+        "amt": 9,
+        "enabled": true
       }
     ],
     "enabled": true
@@ -510,15 +593,18 @@
     "ing": [
       {
         "name": "steel",
-        "amt": 3
+        "amt": 3,
+        "enabled": true
       },
       {
         "name": "powderBarrel",
-        "amt": 4
+        "amt": 4,
+        "enabled": true
       },
       {
         "name": "iTNT",
-        "amt": 1
+        "amt": 1,
+        "enabled": true
       }
     ],
     "enabled": true
@@ -528,15 +614,18 @@
     "ing": [
       {
         "name": "tin",
-        "amt": 3
+        "amt": 3,
+        "enabled": true
       },
       {
         "name": "powderBarrel",
-        "amt": 4
+        "amt": 4,
+        "enabled": true
       },
       {
         "name": "iTNT",
-        "amt": 1
+        "amt": 1,
+        "enabled": true
       }
     ],
     "enabled": true
@@ -546,23 +635,28 @@
     "ing": [
       {
         "name": "advancedRobot",
-        "amt": 3
+        "amt": 3,
+        "enabled": true
       },
       {
         "name": "circuitIV",
-        "amt": 2
+        "amt": 2,
+        "enabled": true
       },
       {
         "name": "display",
-        "amt": 1
+        "amt": 1,
+        "enabled": true
       },
       {
         "name": "hardWall",
-        "amt": 2
+        "amt": 2,
+        "enabled": true
       },
       {
         "name": "assemblerHV",
-        "amt": 1
+        "amt": 1,
+        "enabled": true
       }
     ],
     "enabled": true
@@ -572,31 +666,38 @@
     "ing": [
       {
         "name": "netherStarPlate",
-        "amt": 2
+        "amt": 2,
+        "enabled": true
       },
       {
         "name": "sensorLens",
-        "amt": 1
+        "amt": 1,
+        "enabled": true
       },
       {
         "name": "motorHV",
-        "amt": 1
+        "amt": 1,
+        "enabled": true
       },
       {
         "name": "pistonHV",
-        "amt": 1
+        "amt": 1,
+        "enabled": true
       },
       {
         "name": "robotArmHV",
-        "amt": 1
+        "amt": 1,
+        "enabled": true
       },
       {
         "name": "longStainlessRod",
-        "amt": 2
+        "amt": 2,
+        "enabled": true
       },
       {
         "name": "circuitEV",
-        "amt": 1
+        "amt": 1,
+        "enabled": true
       }
     ],
     "enabled": true
@@ -606,23 +707,28 @@
     "ing": [
       {
         "name": "motorHV",
-        "amt": 2
+        "amt": 2,
+        "enabled": true
       },
       {
         "name": "pistonHV",
-        "amt": 1
+        "amt": 1,
+        "enabled": true
       },
       {
         "name": "stainlessRod",
-        "amt": 2
+        "amt": 2,
+        "enabled": true
       },
       {
         "name": "circuitHV",
-        "amt": 1
+        "amt": 1,
+        "enabled": true
       },
       {
         "name": "goldCable",
-        "amt": 3
+        "amt": 3,
+        "enabled": true
       }
     ],
     "enabled": true
@@ -632,7 +738,8 @@
     "ing": [
       {
         "name": "stainlessSteel",
-        "amt": 1
+        "amt": 1,
+        "enabled": true
       }
     ],
     "enabled": true
@@ -642,7 +749,8 @@
     "ing": [
       {
         "name": "stainlessSteel",
-        "amt": 1
+        "amt": 1,
+        "enabled": true
       }
     ],
     "enabled": true
@@ -652,7 +760,117 @@
     "ing": [
       {
         "name": "stainlessSteel",
-        "amt": 1
+        "amt": 1,
+        "enabled": true
+      }
+    ],
+    "enabled": true
+  },
+  "T1Rocket": {
+    "amt": 1,
+    "ing": [
+      {
+        "name": "noseCone1",
+        "amt": 1,
+        "enabled": true
+      },
+      {
+        "name": "lander1",
+        "amt": 1,
+        "enabled": true
+      },
+      {
+        "name": "heavyDutyPlate1",
+        "amt": 8,
+        "enabled": true
+      },
+      {
+        "name": "fin1",
+        "amt": 8,
+        "enabled": true
+      },
+      {
+        "name": "fuelCanister1",
+        "amt": 2,
+        "enabled": true
+      },
+      {
+        "name": "guidanceChip1",
+        "amt": 1,
+        "enabled": true
+      },
+      {
+        "name": "booster1",
+        "amt": 1,
+        "enabled": true
+      },
+      {
+        "name": "goldChest",
+        "amt": 1,
+        "enabled": true
+      }
+    ],
+    "enabled": true
+  },
+  "heavyDutyPlate1": {
+    "amt": 1,
+    "ing": [
+      {
+        "name": "heavyDutyAlloyIngot1",
+        "amt": 1,
+        "enabled": true
+      },
+      {
+        "name": "powderBarrel",
+        "amt": 10,
+        "enabled": true
+      },
+      {
+        "name": "iTNT",
+        "amt": 2,
+        "enabled": true
+      }
+    ],
+    "enabled": true
+  },
+  "doubleCompressedAluminium": {
+    "amt": 1,
+    "ing": [
+      {
+        "name": "compressedAluminium",
+        "amt": 2,
+        "enabled": true
+      },
+      {
+        "name": "powderBarrel",
+        "amt": 2,
+        "enabled": true
+      },
+      {
+        "name": "iTNT",
+        "amt": 1,
+        "enabled": true
+      }
+    ],
+    "enabled": true
+  },
+  "doubleCompressedBronze": {
+    "amt": 1,
+    "ing": [
+      {
+        "name": "compressedBronze",
+        "amt": 2,
+        "enabled": true
+      },
+      {
+        "name": "powderBarrel",
+        "amt": 2,
+        "enabled": true
+      },
+      {
+        "name": "iTNT",
+        "amt": 1,
+        "enabled": true
       }
     ],
     "enabled": true

@@ -149,7 +149,7 @@ class Item:
         s = ""
         factor = math.ceil(amt / self.recipe.output.amount)
         ing = Ingredient(self, amt)
-        s += f"{'  '*depth}-- {ing}\n"
+        s += f"{'  ' * depth}-- {ing}\n"
         for i in self.recipe.inputs:
             namt = i.amount * factor
             s += i.item.repr_tree(namt, depth + 1)
@@ -167,7 +167,7 @@ class Ingredient:
     """
     MAX_DEPTH = 1000  # Maximum amount of crafting steps allowed
 
-    def __init__(self, item: Item, amount: int):
+    def __init__(self, item: Item, amount: int, enabled=True):
         """
         Initializes Ingredient
         :param item: The item
@@ -175,6 +175,7 @@ class Ingredient:
         """
         self.item = item
         self.amount = amount
+        self.enabled = enabled
 
     def __hash__(self):
         """
@@ -222,11 +223,13 @@ class Ingredient:
         return Ingredient(self.item, self.amount * amount)
 
     @property
-    def recipe(self) -> "Recipe":
+    def recipe(self) -> Optional["Recipe"]:
         """
         :return: The ingredient's recipe
         """
-        return self.item.recipe
+        if self.enabled is not None:
+            return self.item.recipe
+        return None
 
     def is_same_type_as(self, other: "Ingredient") -> bool:
         """
@@ -247,7 +250,8 @@ class Ingredient:
         if depth > Ingredient.MAX_DEPTH:
             raise RecursionDepthError(f"Maximum depth ({Ingredient.MAX_DEPTH} steps) reached")
         # Check if recipe exists, if not return self
-        if self.recipe is None:
+        # print("\t", self.item.name, self.enabled)
+        if not self.enabled or self.recipe is None or not self.recipe.enabled:
             return {self.item: Ingredient(self.item, numRecipes)}
         factor = math.ceil(numRecipes / self.recipe.output.amount)
         # Iterate through inputs and calculate their costs
@@ -255,6 +259,8 @@ class Ingredient:
             # numRecipes = math.ceil(inp.amount / numRecipes)
             # Add costs to self
             for item, ingredient in inp.get_net_cost(inp.amount * factor, depth + 1).items():
+                if not ingredient.enabled:
+                    continue
                 # No key errors for you
                 if item not in result:
                     result[item] = Ingredient(item, 0)
@@ -268,7 +274,7 @@ class Recipe:
     TODO: Add multiple outputs
     """
 
-    def __init__(self, output: Ingredient, inputs: Optional[List[Ingredient]] = None):
+    def __init__(self, output: Ingredient, inputs: Optional[List[Ingredient]] = None, enabled=True):
         """
         Initializes Recipe with input and outputs
         :param output: Output ingredient
@@ -279,6 +285,7 @@ class Recipe:
             inputs = list()
         self.output: Ingredient = output
         self.inputs: List[Ingredient] = list()
+        self.enabled = enabled
         # Use the method to add inputs you beast!
         for i in inputs:
             self.add_ingredient(i)
@@ -287,12 +294,13 @@ class Recipe:
         """
         :return: The string representation of the Recipe
         """
-        return f"{repr(self.output)}" + " <- " + " + ".join(repr(i) for i in self.inputs)
+        return f"{'DISABLED ' if not self.enabled else ''}{repr(self.output)}" + " <- " + " + ".join(repr(i) for i in self.inputs)
 
     def add_ingredient(self, ingredient: Ingredient):
         """
         Adds an input to the recipe
         :param ingredient: Ingredient to add
+        :param enabled: Whether the ingredient is relevant
         :return: Nada amigo
         """
         # Verify ingredient isn't already present, add if so
@@ -315,12 +323,15 @@ class Recipe:
         # Create output ingredient
         outputItem = Item(item)
         amount = recipeDict["amt"]
-        result = Recipe(Ingredient(outputItem, amount))
+        enabled = recipeDict.get("enabled", True)
+        result = Recipe(Ingredient(outputItem, amount), enabled=enabled)
         # Add output ingredients
         for ingredient in recipeDict["ing"]:
             i = Item(ingredient["name"])
-            ing = Ingredient(i, ingredient["amt"])
+            en = ingredient.get("enabled", True)
+            ing = Ingredient(i, ingredient["amt"], enabled=en)
             result.add_ingredient(ing)
+        # print("Loaded", result)
         return result
 
     def dump_to_dict(self) -> dict:
@@ -334,8 +345,10 @@ class Recipe:
             d = dict()
             d["name"] = ing.item.name
             d["amt"] = ing.amount
+            d["enabled"] = ing.enabled
             ingredients.append(d)
         result["ing"] = ingredients
+        result["enabled"] = self.enabled
         # print(result)
         return result
 

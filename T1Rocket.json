@@ -1,1 +1,711 @@
-{"lander1": {"amt": 1, "ing": [{"name": "freqModule", "amt": 1}, {"name": "compressedSteel", "amt": 3}, {"name": "seat", "amt": 1}, {"name": "compressedBronze", "amt": 1}, {"name": "steelPole", "amt": 2}, {"name": "booster1", "amt": 1}]}, "noseCone1": {"amt": 1, "ing": [{"name": "redLamp", "amt": 1}, {"name": "stainlessScrew", "amt": 2}, {"name": "heavyDutyPlate1", "amt": 4}]}, "fin1": {"amt": 1, "ing": [{"name": "compressedSteel", "amt": 2}, {"name": "heavyDutyPlate1", "amt": 4}]}, "guidanceChip1": {"amt": 1, "ing": [{"name": "keyboard", "amt": 1}, {"name": "emitterHV", "amt": 1}, {"name": "sensorHV", "amt": 1}, {"name": "display", "amt": 1}, {"name": "heavyDutyPlate1", "amt": 1}]}, "heavyDutyAlloyIngot1": {"amt": 1, "ing": [{"name": "compressedBronze", "amt": 1}, {"name": "compressedAluminium", "amt": 1}, {"name": "compressedSteel", "amt": 1}, {"name": "liquidStainlessSteel", "amt": 72}]}, "fuelCanister1": {"amt": 1, "ing": [{"name": "stainlessScrew", "amt": 4}, {"name": "blankFuelTank", "amt": 1}, {"name": "doubleCompressedBronze", "amt": 1}, {"name": "doubleCompressedAluminium", "amt": 1}]}, "freqModule": {"amt": 1, "ing": [{"name": "sensorHV", "amt": 1}, {"name": "computerMonitor", "amt": 1}, {"name": "compressedAluminium", "amt": 2}, {"name": "compressedTin", "amt": 2}]}, "liquidStainlessSteel": {"amt": 144, "ing": [{"name": "stainlessSteel", "amt": 1}]}, "booster1": {"amt": 1, "ing": [{"name": "sdhc", "amt": 2}, {"name": "emptyCanister", "amt": 1}, {"name": "firebox", "amt": 1}, {"name": "activityDetector", "amt": 1}, {"name": "heavyDutyPlate1", "amt": 4}]}, "sdhc": {"amt": 1, "ing": [{"name": "rawSDHC", "amt": 1}, {"name": "powderBarrel", "amt": 10}, {"name": "iTNT", "amt": 1}]}, "rawSDHC": {"amt": 1, "ing": [{"name": "stainlessScrew", "amt": 4}, {"name": "doubleCompressedBronze", "amt": 1}, {"name": "doubleCompressedAluminium", "amt": 1}, {"name": "compressedCoal", "amt": 1}]}, "seat": {"amt": 1, "ing": [{"name": "rubberSheet", "amt": 3}, {"name": "compressedSteel", "amt": 5}]}, "steelPole": {"amt": 1, "ing": [{"name": "compressedSteel", "amt": 2}]}, "blankFuelTank": {"amt": 1, "ing": [{"name": "compressedSteel", "amt": 8}]}, "dummyRocketMission": {"amt": 1, "ing": [{"name": "T1Rocket", "amt": 1}, {"name": "emptyCanister", "amt": 4}, {"name": "fuelLoader", "amt": 2}, {"name": "launchPad", "amt": 9}, {"name": "spaceSuit", "amt": 1}, {"name": "rocketAssembler", "amt": 1}]}, "emptyCanister": {"amt": 1, "ing": [{"name": "steelRing", "amt": 4}, {"name": "compressedSteel", "amt": 4}]}, "stainlessScrew": {"amt": 1, "ing": [{"name": "stainlessBolt", "amt": 1}]}, "stainlessBolt": {"amt": 8, "ing": [{"name": "stainlessSteel", "amt": 1}]}, "steelRing": {"amt": 4, "ing": [{"name": "steel", "amt": 1}]}, "firebox": {"amt": 1, "ing": [{"name": "steel", "amt": 8}]}, "fuelLoader": {"amt": 1, "ing": [{"name": "compressedSteel", "amt": 2}, {"name": "pumpHV", "amt": 1}, {"name": "steelCell", "amt": 1}, {"name": "motorHV", "amt": 1}, {"name": "compressedAluminium", "amt": 2}, {"name": "steelPipe", "amt": 1}]}, "launchPad": {"amt": 3, "ing": [{"name": "compressedIron", "amt": 3}, {"name": "advancedAlloy", "amt": 3}, {"name": "ironBlock", "amt": 3}]}, "steelPipe": {"amt": 1, "ing": [{"name": "steel", "amt": 3}]}, "steelCell": {"amt": 1, "ing": [{"name": "steel", "amt": 8}, {"name": "bronze", "amt": 1}, {"name": "iTNT", "amt": 1}]}, "compressedAluminium": {"amt": 1, "ing": [{"name": "aluminium", "amt": 3}, {"name": "powderBarrel", "amt": 4}, {"name": "iTNT", "amt": 1}]}, "compressedBronze": {"amt": 1, "ing": [{"name": "bronze", "amt": 3}, {"name": "powderBarrel", "amt": 4}, {"name": "iTNT", "amt": 1}]}, "compressedCoal": {"amt": 1, "ing": [{"name": "coalBlock", "amt": 1}, {"name": "powderBarrel", "amt": 2}, {"name": "iTNT", "amt": 1}]}, "compressedIron": {"amt": 1, "ing": [{"name": "iron", "amt": 3}, {"name": "powderBarrel", "amt": 4}, {"name": "iTNT", "amt": 1}]}, "ironBlock": {"amt": 1, "ing": [{"name": "iron", "amt": 9}]}, "compressedSteel": {"amt": 1, "ing": [{"name": "steel", "amt": 3}, {"name": "powderBarrel", "amt": 4}, {"name": "iTNT", "amt": 1}]}, "compressedTin": {"amt": 1, "ing": [{"name": "tin", "amt": 3}, {"name": "powderBarrel", "amt": 4}, {"name": "iTNT", "amt": 1}]}, "rocketAssembler": {"amt": 1, "ing": [{"name": "advancedRobot", "amt": 3}, {"name": "circuitIV", "amt": 2}, {"name": "display", "amt": 1}, {"name": "hardWall", "amt": 2}, {"name": "assemblerHV", "amt": 1}]}, "advancedRobot": {"amt": 1, "ing": [{"name": "netherStarPlate", "amt": 2}, {"name": "sensorLens", "amt": 1}, {"name": "motorHV", "amt": 1}, {"name": "pistonHV", "amt": 1}, {"name": "robotArmHV", "amt": 1}, {"name": "longStainlessRod", "amt": 2}, {"name": "circuitEV", "amt": 1}]}, "robotArmHV": {"amt": 1, "ing": [{"name": "motorHV", "amt": 2}, {"name": "pistonHV", "amt": 1}, {"name": "stainlessRod", "amt": 2}, {"name": "circuitHV", "amt": 1}, {"name": "goldCable", "amt": 3}]}, "stainlessPlate": {"amt": 1, "ing": [{"name": "stainlessSteel", "amt": 1}]}, "stainlessRod": {"amt": 2, "ing": [{"name": "stainlessSteel", "amt": 1}]}, "stainlessSmallGear": {"amt": 1, "ing": [{"name": "stainlessSteel", "amt": 1}]}, "T1Rocket": {"amt": 1, "ing": [{"name": "noseCone1", "amt": 1}, {"name": "lander1", "amt": 1}, {"name": "heavyDutyPlate1", "amt": 8}, {"name": "fin1", "amt": 8}, {"name": "fuelCanister1", "amt": 2}, {"name": "guidanceChip1", "amt": 1}, {"name": "booster1", "amt": 1}, {"name": "goldChest", "amt": 1}]}, "heavyDutyPlate1": {"amt": 1, "ing": [{"name": "heavyDutyAlloyIngot1", "amt": 1}, {"name": "powderBarrel", "amt": 10}, {"name": "iTNT", "amt": 2}]}, "doubleCompressedAluminium": {"amt": 1, "ing": [{"name": "compressedAluminium", "amt": 2}, {"name": "powderBarrel", "amt": 2}, {"name": "iTNT", "amt": 1}]}, "doubleCompressedBronze": {"amt": 1, "ing": [{"name": "compressedBronze", "amt": 2}, {"name": "powderBarrel", "amt": 2}, {"name": "iTNT", "amt": 1}]}}
+{
+  "lander1": {
+    "amt": 1,
+    "ing": [
+      {
+        "name": "freqModule",
+        "amt": 1
+      },
+      {
+        "name": "compressedSteel",
+        "amt": 3
+      },
+      {
+        "name": "seat",
+        "amt": 1
+      },
+      {
+        "name": "compressedBronze",
+        "amt": 1
+      },
+      {
+        "name": "steelPole",
+        "amt": 2
+      },
+      {
+        "name": "booster1",
+        "amt": 1
+      }
+    ]
+  },
+  "noseCone1": {
+    "amt": 1,
+    "ing": [
+      {
+        "name": "redLamp",
+        "amt": 1
+      },
+      {
+        "name": "stainlessScrew",
+        "amt": 2
+      },
+      {
+        "name": "heavyDutyPlate1",
+        "amt": 4
+      }
+    ]
+  },
+  "fin1": {
+    "amt": 1,
+    "ing": [
+      {
+        "name": "compressedSteel",
+        "amt": 2
+      },
+      {
+        "name": "heavyDutyPlate1",
+        "amt": 4
+      }
+    ]
+  },
+  "guidanceChip1": {
+    "amt": 1,
+    "ing": [
+      {
+        "name": "keyboard",
+        "amt": 1
+      },
+      {
+        "name": "emitterHV",
+        "amt": 1
+      },
+      {
+        "name": "sensorHV",
+        "amt": 1
+      },
+      {
+        "name": "display",
+        "amt": 1
+      },
+      {
+        "name": "heavyDutyPlate1",
+        "amt": 1
+      }
+    ]
+  },
+  "heavyDutyAlloyIngot1": {
+    "amt": 1,
+    "ing": [
+      {
+        "name": "compressedBronze",
+        "amt": 1
+      },
+      {
+        "name": "compressedAluminium",
+        "amt": 1
+      },
+      {
+        "name": "compressedSteel",
+        "amt": 1
+      },
+      {
+        "name": "liquidStainlessSteel",
+        "amt": 72
+      }
+    ]
+  },
+  "fuelCanister1": {
+    "amt": 1,
+    "ing": [
+      {
+        "name": "stainlessScrew",
+        "amt": 4
+      },
+      {
+        "name": "blankFuelTank",
+        "amt": 1
+      },
+      {
+        "name": "doubleCompressedBronze",
+        "amt": 1
+      },
+      {
+        "name": "doubleCompressedAluminium",
+        "amt": 1
+      }
+    ]
+  },
+  "freqModule": {
+    "amt": 1,
+    "ing": [
+      {
+        "name": "sensorHV",
+        "amt": 1
+      },
+      {
+        "name": "computerMonitor",
+        "amt": 1
+      },
+      {
+        "name": "compressedAluminium",
+        "amt": 2
+      },
+      {
+        "name": "compressedTin",
+        "amt": 2
+      }
+    ]
+  },
+  "liquidStainlessSteel": {
+    "amt": 144,
+    "ing": [
+      {
+        "name": "stainlessSteel",
+        "amt": 1
+      }
+    ]
+  },
+  "booster1": {
+    "amt": 1,
+    "ing": [
+      {
+        "name": "sdhc",
+        "amt": 2
+      },
+      {
+        "name": "emptyCanister",
+        "amt": 1
+      },
+      {
+        "name": "firebox",
+        "amt": 1
+      },
+      {
+        "name": "activityDetector",
+        "amt": 1
+      },
+      {
+        "name": "heavyDutyPlate1",
+        "amt": 4
+      }
+    ]
+  },
+  "sdhc": {
+    "amt": 1,
+    "ing": [
+      {
+        "name": "rawSDHC",
+        "amt": 1
+      },
+      {
+        "name": "powderBarrel",
+        "amt": 10
+      },
+      {
+        "name": "iTNT",
+        "amt": 1
+      }
+    ]
+  },
+  "rawSDHC": {
+    "amt": 1,
+    "ing": [
+      {
+        "name": "stainlessScrew",
+        "amt": 4
+      },
+      {
+        "name": "doubleCompressedBronze",
+        "amt": 1
+      },
+      {
+        "name": "doubleCompressedAluminium",
+        "amt": 1
+      },
+      {
+        "name": "compressedCoal",
+        "amt": 1
+      }
+    ]
+  },
+  "seat": {
+    "amt": 1,
+    "ing": [
+      {
+        "name": "rubberSheet",
+        "amt": 3
+      },
+      {
+        "name": "compressedSteel",
+        "amt": 5
+      }
+    ]
+  },
+  "steelPole": {
+    "amt": 1,
+    "ing": [
+      {
+        "name": "compressedSteel",
+        "amt": 2
+      }
+    ]
+  },
+  "blankFuelTank": {
+    "amt": 1,
+    "ing": [
+      {
+        "name": "compressedSteel",
+        "amt": 8
+      }
+    ]
+  },
+  "dummyRocketMission": {
+    "amt": 1,
+    "ing": [
+      {
+        "name": "T1Rocket",
+        "amt": 1
+      },
+      {
+        "name": "emptyCanister",
+        "amt": 4
+      },
+      {
+        "name": "fuelLoader",
+        "amt": 2
+      },
+      {
+        "name": "launchPad",
+        "amt": 9
+      },
+      {
+        "name": "spaceSuit",
+        "amt": 1
+      },
+      {
+        "name": "rocketAssembler",
+        "amt": 1
+      }
+    ]
+  },
+  "emptyCanister": {
+    "amt": 1,
+    "ing": [
+      {
+        "name": "steelRing",
+        "amt": 4
+      },
+      {
+        "name": "compressedSteel",
+        "amt": 4
+      }
+    ]
+  },
+  "stainlessScrew": {
+    "amt": 1,
+    "ing": [
+      {
+        "name": "stainlessBolt",
+        "amt": 1
+      }
+    ]
+  },
+  "stainlessBolt": {
+    "amt": 8,
+    "ing": [
+      {
+        "name": "stainlessSteel",
+        "amt": 1
+      }
+    ]
+  },
+  "steelRing": {
+    "amt": 4,
+    "ing": [
+      {
+        "name": "steel",
+        "amt": 1
+      }
+    ]
+  },
+  "firebox": {
+    "amt": 1,
+    "ing": [
+      {
+        "name": "steel",
+        "amt": 8
+      }
+    ]
+  },
+  "fuelLoader": {
+    "amt": 1,
+    "ing": [
+      {
+        "name": "compressedSteel",
+        "amt": 2
+      },
+      {
+        "name": "pumpHV",
+        "amt": 1
+      },
+      {
+        "name": "steelCell",
+        "amt": 1
+      },
+      {
+        "name": "motorHV",
+        "amt": 1
+      },
+      {
+        "name": "compressedAluminium",
+        "amt": 2
+      },
+      {
+        "name": "steelPipe",
+        "amt": 1
+      }
+    ]
+  },
+  "launchPad": {
+    "amt": 3,
+    "ing": [
+      {
+        "name": "compressedIron",
+        "amt": 3
+      },
+      {
+        "name": "advancedAlloy",
+        "amt": 3
+      },
+      {
+        "name": "ironBlock",
+        "amt": 3
+      }
+    ]
+  },
+  "steelPipe": {
+    "amt": 1,
+    "ing": [
+      {
+        "name": "steel",
+        "amt": 3
+      }
+    ]
+  },
+  "steelCell": {
+    "amt": 1,
+    "ing": [
+      {
+        "name": "steel",
+        "amt": 8
+      },
+      {
+        "name": "bronze",
+        "amt": 1
+      },
+      {
+        "name": "iTNT",
+        "amt": 1
+      }
+    ]
+  },
+  "compressedAluminium": {
+    "amt": 1,
+    "ing": [
+      {
+        "name": "aluminium",
+        "amt": 3
+      },
+      {
+        "name": "powderBarrel",
+        "amt": 4
+      },
+      {
+        "name": "iTNT",
+        "amt": 1
+      }
+    ]
+  },
+  "compressedBronze": {
+    "amt": 1,
+    "ing": [
+      {
+        "name": "bronze",
+        "amt": 3
+      },
+      {
+        "name": "powderBarrel",
+        "amt": 4
+      },
+      {
+        "name": "iTNT",
+        "amt": 1
+      }
+    ]
+  },
+  "compressedCoal": {
+    "amt": 1,
+    "ing": [
+      {
+        "name": "coalBlock",
+        "amt": 1
+      },
+      {
+        "name": "powderBarrel",
+        "amt": 2
+      },
+      {
+        "name": "iTNT",
+        "amt": 1
+      }
+    ]
+  },
+  "compressedIron": {
+    "amt": 1,
+    "ing": [
+      {
+        "name": "iron",
+        "amt": 3
+      },
+      {
+        "name": "powderBarrel",
+        "amt": 4
+      },
+      {
+        "name": "iTNT",
+        "amt": 1
+      }
+    ]
+  },
+  "ironBlock": {
+    "amt": 1,
+    "ing": [
+      {
+        "name": "iron",
+        "amt": 9
+      }
+    ]
+  },
+  "compressedSteel": {
+    "amt": 1,
+    "ing": [
+      {
+        "name": "steel",
+        "amt": 3
+      },
+      {
+        "name": "powderBarrel",
+        "amt": 4
+      },
+      {
+        "name": "iTNT",
+        "amt": 1
+      }
+    ]
+  },
+  "compressedTin": {
+    "amt": 1,
+    "ing": [
+      {
+        "name": "tin",
+        "amt": 3
+      },
+      {
+        "name": "powderBarrel",
+        "amt": 4
+      },
+      {
+        "name": "iTNT",
+        "amt": 1
+      }
+    ]
+  },
+  "rocketAssembler": {
+    "amt": 1,
+    "ing": [
+      {
+        "name": "advancedRobot",
+        "amt": 3
+      },
+      {
+        "name": "circuitIV",
+        "amt": 2
+      },
+      {
+        "name": "display",
+        "amt": 1
+      },
+      {
+        "name": "hardWall",
+        "amt": 2
+      },
+      {
+        "name": "assemblerHV",
+        "amt": 1
+      }
+    ]
+  },
+  "advancedRobot": {
+    "amt": 1,
+    "ing": [
+      {
+        "name": "netherStarPlate",
+        "amt": 2
+      },
+      {
+        "name": "sensorLens",
+        "amt": 1
+      },
+      {
+        "name": "motorHV",
+        "amt": 1
+      },
+      {
+        "name": "pistonHV",
+        "amt": 1
+      },
+      {
+        "name": "robotArmHV",
+        "amt": 1
+      },
+      {
+        "name": "longStainlessRod",
+        "amt": 2
+      },
+      {
+        "name": "circuitEV",
+        "amt": 1
+      }
+    ]
+  },
+  "robotArmHV": {
+    "amt": 1,
+    "ing": [
+      {
+        "name": "motorHV",
+        "amt": 2
+      },
+      {
+        "name": "pistonHV",
+        "amt": 1
+      },
+      {
+        "name": "stainlessRod",
+        "amt": 2
+      },
+      {
+        "name": "circuitHV",
+        "amt": 1
+      },
+      {
+        "name": "goldCable",
+        "amt": 3
+      }
+    ]
+  },
+  "stainlessPlate": {
+    "amt": 1,
+    "ing": [
+      {
+        "name": "stainlessSteel",
+        "amt": 1
+      }
+    ]
+  },
+  "stainlessRod": {
+    "amt": 2,
+    "ing": [
+      {
+        "name": "stainlessSteel",
+        "amt": 1
+      }
+    ]
+  },
+  "stainlessSmallGear": {
+    "amt": 1,
+    "ing": [
+      {
+        "name": "stainlessSteel",
+        "amt": 1
+      }
+    ]
+  },
+  "T1Rocket": {
+    "amt": 1,
+    "ing": [
+      {
+        "name": "noseCone1",
+        "amt": 1
+      },
+      {
+        "name": "lander1",
+        "amt": 1
+      },
+      {
+        "name": "heavyDutyPlate1",
+        "amt": 8
+      },
+      {
+        "name": "fin1",
+        "amt": 8
+      },
+      {
+        "name": "fuelCanister1",
+        "amt": 2
+      },
+      {
+        "name": "guidanceChip1",
+        "amt": 1
+      },
+      {
+        "name": "booster1",
+        "amt": 1
+      },
+      {
+        "name": "goldChest",
+        "amt": 1
+      }
+    ]
+  },
+  "heavyDutyPlate1": {
+    "amt": 1,
+    "ing": [
+      {
+        "name": "heavyDutyAlloyIngot1",
+        "amt": 1
+      },
+      {
+        "name": "powderBarrel",
+        "amt": 10
+      },
+      {
+        "name": "iTNT",
+        "amt": 2
+      }
+    ]
+  },
+  "doubleCompressedAluminium": {
+    "amt": 1,
+    "ing": [
+      {
+        "name": "compressedAluminium",
+        "amt": 2
+      },
+      {
+        "name": "powderBarrel",
+        "amt": 2
+      },
+      {
+        "name": "iTNT",
+        "amt": 1
+      }
+    ]
+  },
+  "doubleCompressedBronze": {
+    "amt": 1,
+    "ing": [
+      {
+        "name": "compressedBronze",
+        "amt": 2
+      },
+      {
+        "name": "powderBarrel",
+        "amt": 2
+      },
+      {
+        "name": "iTNT",
+        "amt": 1
+      }
+    ]
+  }
+}
