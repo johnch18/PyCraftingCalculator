@@ -582,7 +582,11 @@ class Repl:
         try:
             s = self.prompt().split()
             # print(s)
-            itemName, amount = s
+            if len(s) > 1:
+                itemName, amount = s
+            else:
+                itemName = s[0]
+                amount = 1
             amount = int(amount)
             return itemName, amount
         # Ignore errors with unpacking the tuple or getting the int
