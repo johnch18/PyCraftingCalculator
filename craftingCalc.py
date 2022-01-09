@@ -109,6 +109,9 @@ class Item:
         """
         return self.name
 
+    def __lt__(self, other: "Item"):
+        return self.name < other.name
+
     def requires(self, item: "Item") -> bool:
         """
         Checks if an item is in the crafting tree of this item
@@ -732,7 +735,10 @@ class Repl:
         itemName, amount = self.get_ingredient()
         item = Item(itemName)
         ing = Ingredient(item, amount)
-        for i, amt in ing.get_net_cost(amount).items():
+        cost = ing.get_net_cost(amount)
+        keys = sorted(cost.keys())
+        for i in keys:
+            amt = cost[i]
             print(amt)
 
 
