@@ -155,7 +155,6 @@ class Item:
             s += i.item.repr_tree(namt, depth + 1)
         return s
 
-
     def set_recipe(self, recipe: Optional["Recipe"]):
         if recipe is not None:
             self.recipe = recipe
@@ -528,7 +527,7 @@ class Repl:
         if com == "add":
             self.add_dialogue()
         if com == "list":
-            for item in self.recipes.items:
+            for item in sorted(self.recipes.items):
                 print(item.recipe)
         if com == "save":
             self.save_dialogue()
