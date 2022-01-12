@@ -15,19 +15,16 @@ class AddRecipeCommand(repl.Command):
     def action(rpl: "RecipeRepl", *_, **__):
         recipe = craftingCalc.Recipe([], [])
         for e, i in enumerate(_):
-            item, amount = i.split(":")
-            itemObject = craftingCalc.Component(item)
-            ingredient = craftingCalc.Ingredient(itemObject, int(amount))
+            ingredient = RecipeRepl.parse_ingredient(i)
             recipe.add_output(ingredient)
+            ingredient.component.set_recipe(recipe)
         try:
-            rpl.println("Please enter ingredients, or press Ctrl+C or type exit to exit")
+            rpl.println("Please enter ingredients, or press Ctrl+C or type :exit to exit")
             while True:
                 r = rpl.prompt("\t> ")
-                if r == "exit":
+                if r == ":exit":
                     break
-                itemName, amount = r.split(":")
-                item = craftingCalc.Component(itemName)
-                ing = craftingCalc.Ingredient(item, int(amount))
+                ing = RecipeRepl.parse_ingredient(r)
                 recipe.add_input(ing)
         except KeyboardInterrupt:
             rpl.println("")
@@ -86,8 +83,16 @@ class TreeCommand(repl.Command):
     def action(rpl, *_, **__):
         if len(_) <= 0:
             raise IncorrectArgumentException("Missing argument item/fluid")
-        component, amount = _[0].split(":")
-        ing = craftingCalc.Ingredient(component, int(amount))
+        ingredient = RecipeRepl.parse_ingredient(_[0])
+        tree = ingredient.get_tree()
+        TreeCommand.display_tree(rpl, tree)
+
+    @staticmethod
+    def display_tree(rpl, tree: dict, depth=0):
+        o = tree["output"]
+        rpl.println(f"{'  '*depth}|-- {o}")
+        for i in tree["inputs"]:
+            TreeCommand.display_tree(rpl, i, depth+1)
 
     keyword = "tree"
     help_msg = """Usage: tree item/fluid
@@ -95,15 +100,54 @@ class TreeCommand(repl.Command):
     """
 
 
+class CostCommand(repl.Command):
+
+    @staticmethod
+    def action(rpl, *_, **__):
+        if len(_) <= 0:
+            raise IncorrectArgumentException("Missing argument item/fluid")
+        ingredient = RecipeRepl.parse_ingredient(_[0])
+        cost = ingredient.recipe.cost(ingredient)
+        for itemName in sorted(cost.keys()):
+            rpl.println(f"{cost[itemName]}")
+
+    keyword = "cost"
+    help_msg = """Usage: cost item/fluid
+    Displays the net cost of a craft in terms of base components"""
+
+
+class ItemsCommand(repl.Command):
+
+    @staticmethod
+    def action(rpl, *_, **__):
+        reg = craftingCalc.Component.COMPONENT_REGISTRY
+        for item in sorted(reg.keys()):
+            print(reg[item].recipe)
+
+    keyword = "__items"
+    help_msg = """"""
+
+
 class RecipeRepl(repl.Repl):
-    RECIPE_COMMANDS = [AddRecipeCommand, ListRecipeCommand, SaveCommand]
+    RECIPE_COMMANDS = [AddRecipeCommand, ListRecipeCommand, SaveCommand, TreeCommand, ItemsCommand, CostCommand]
 
     def __init__(self, fileName=None):
         super().__init__()
         self.recipeBook = craftingCalc.RecipeBook(fileName)
         self.load_recipe_commands()
         self.println("The default format for an ingredient is [ITEM/FLUIDNAME]:AMOUNT")
+        self.println("Use liters for fluids.")
         self.println("Enter help for help or exit for exit.")
+
+    @staticmethod
+    def parse_ingredient(ingredient: str) -> craftingCalc.Ingredient:
+        split = ingredient.split(":")
+        if len(split) <= 1:
+            amount = 1
+        else:
+            amount = int(split.pop())
+        itemName = split.pop(0)
+        return craftingCalc.Ingredient(craftingCalc.Component(itemName), amount)
 
     def on_exit(self):
         if self.recipeBook.dirty:
@@ -133,7 +177,7 @@ class RecipeRepl(repl.Repl):
 
 def main():
     if len(sys.argv) > 1:
-        rpl = RecipeRepl(sys.argv[0])
+        rpl = RecipeRepl(sys.argv[1])
     else:
         rpl = RecipeRepl()
     rpl.repl()

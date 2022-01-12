@@ -1,0 +1,39 @@
+{
+  "version": "1.0.0",
+  "recipes": [
+    {
+      "inputs": [
+        {
+          "ingredient": "wood:4",
+          "enabled": true,
+          "fluid": false
+        }
+      ],
+      "outputs": [
+        {
+          "ingredient": "craftingBench:1",
+          "enabled": true,
+          "fluid": false
+        }
+      ],
+      "enabled": true
+    },
+    {
+      "inputs": [
+        {
+          "ingredient": "woodLog:1",
+          "enabled": true,
+          "fluid": false
+        }
+      ],
+      "outputs": [
+        {
+          "ingredient": "wood:4",
+          "enabled": true,
+          "fluid": false
+        }
+      ],
+      "enabled": true
+    }
+  ]
+}
