@@ -131,9 +131,13 @@ class ItemsCommand(repl.Command):
 class RecipeRepl(repl.Repl):
     RECIPE_COMMANDS = [AddRecipeCommand, ListRecipeCommand, SaveCommand, TreeCommand, ItemsCommand, CostCommand]
 
-    def __init__(self, fileName=None):
+    def __init__(self, fileName=None, old=False):
         super().__init__()
-        self.recipeBook = craftingCalc.RecipeBook(fileName)
+        if old:
+            self.recipeBook = craftingCalc.RecipeBook()
+            self.recipeBook.load_from_file_old(fileName)
+        else:
+            self.recipeBook = craftingCalc.RecipeBook(fileName)
         self.load_recipe_commands()
         self.println("The default format for an ingredient is [ITEM/FLUIDNAME]:AMOUNT")
         self.println("Use liters for fluids.")
@@ -176,10 +180,11 @@ class RecipeRepl(repl.Repl):
 
 
 def main():
+    old = "-o" in sys.argv
     if len(sys.argv) > 1:
-        rpl = RecipeRepl(sys.argv[1])
+        rpl = RecipeRepl(sys.argv[1], old=old)
     else:
-        rpl = RecipeRepl()
+        rpl = RecipeRepl(old=old)
     rpl.repl()
 
 

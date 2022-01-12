@@ -171,10 +171,10 @@ class Recipe:
         dirty = False
         while len(Q) > 0:
             inp = Q.pop(0)
-            print(inp)
             if inp.is_component(comp) and dirty:
                 return True
-            Q.extend(inp.component.recipe.inputs)
+            if inp.component.recipe is not None:
+                Q.extend(inp.component.recipe.inputs)
             dirty = True
         return False
 
@@ -255,6 +255,18 @@ class Recipe:
         factor = math.ceil(requestedNumberOfCrafts / yieldPerCraft)
         return factor
 
+    @classmethod
+    def load_from_json_old(cls, recipeOutput, recipe) -> "Recipe":
+        output = Ingredient(Component(recipeOutput), recipe["amt"], enabled=recipe.get("enabled", True),
+                            isFluid=recipe.get("isFluid", False))
+        r = Recipe([], [output])
+        output.component.set_recipe(r)
+        for inp in recipe["ing"]:
+            i = Ingredient(Component(inp["name"]), inp["amt"], enabled=recipe.get("enabled", True),
+                           isFluid=recipe.get("isFluid", False))
+            r.add_input(i)
+        return r
+
 
 class RecipeBook:
     def __init__(self, fileName: Optional[str] = None):
@@ -269,11 +281,18 @@ class RecipeBook:
     def load_from_file(self, fileName: str):
         with open(fileName, "r") as file:
             js = json.load(file)
-            v = js[VERSION_STR]
+            v = js.get(VERSION_STR)
             if v != VERSION:
                 raise CompatibilityException("Cannot reconcile version {v} with {VERSION}, please contact author")
             for recipe in js[RECIPE_STR]:
                 self.recipes.append(Recipe.load_from_json(recipe))
+
+    def load_from_file_old(self, fileName: str):
+        with open(fileName, "r") as file:
+            js = json.load(file)
+            for recipeOutput, recipe in js.items():
+                print(recipeOutput, recipe)
+                self.recipes.append(Recipe.load_from_json_old(recipeOutput, recipe))
 
     def dump_to_file(self, fileName: str):
         with open(fileName, "w") as file:

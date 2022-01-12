@@ -1,0 +1,1252 @@
+{
+  "version": "1.0.0",
+  "recipes": [
+    {
+      "inputs": [
+        {
+          "ingredient": "freqModule:1",
+          "enabled": true,
+          "fluid": false
+        },
+        {
+          "ingredient": "compressedSteel:3",
+          "enabled": true,
+          "fluid": false
+        },
+        {
+          "ingredient": "seat:1",
+          "enabled": true,
+          "fluid": false
+        },
+        {
+          "ingredient": "compressedBronze:1",
+          "enabled": true,
+          "fluid": false
+        },
+        {
+          "ingredient": "steelPole:2",
+          "enabled": true,
+          "fluid": false
+        },
+        {
+          "ingredient": "booster1:1",
+          "enabled": true,
+          "fluid": false
+        }
+      ],
+      "outputs": [
+        {
+          "ingredient": "lander1:1",
+          "enabled": true,
+          "fluid": false
+        }
+      ],
+      "enabled": true
+    },
+    {
+      "inputs": [
+        {
+          "ingredient": "redLamp:1",
+          "enabled": false,
+          "fluid": false
+        },
+        {
+          "ingredient": "stainlessScrew:2",
+          "enabled": false,
+          "fluid": false
+        },
+        {
+          "ingredient": "heavyDutyPlate1:4",
+          "enabled": false,
+          "fluid": false
+        }
+      ],
+      "outputs": [
+        {
+          "ingredient": "noseCone1:1",
+          "enabled": false,
+          "fluid": false
+        }
+      ],
+      "enabled": true
+    },
+    {
+      "inputs": [
+        {
+          "ingredient": "compressedSteel:2",
+          "enabled": false,
+          "fluid": false
+        },
+        {
+          "ingredient": "heavyDutyPlate1:4",
+          "enabled": false,
+          "fluid": false
+        }
+      ],
+      "outputs": [
+        {
+          "ingredient": "fin1:1",
+          "enabled": false,
+          "fluid": false
+        }
+      ],
+      "enabled": true
+    },
+    {
+      "inputs": [
+        {
+          "ingredient": "keyboard:1",
+          "enabled": false,
+          "fluid": false
+        },
+        {
+          "ingredient": "emitterHV:1",
+          "enabled": false,
+          "fluid": false
+        },
+        {
+          "ingredient": "sensorHV:1",
+          "enabled": false,
+          "fluid": false
+        },
+        {
+          "ingredient": "display:1",
+          "enabled": false,
+          "fluid": false
+        },
+        {
+          "ingredient": "heavyDutyPlate1:1",
+          "enabled": false,
+          "fluid": false
+        }
+      ],
+      "outputs": [
+        {
+          "ingredient": "guidanceChip1:1",
+          "enabled": false,
+          "fluid": false
+        }
+      ],
+      "enabled": true
+    },
+    {
+      "inputs": [
+        {
+          "ingredient": "compressedBronze:1",
+          "enabled": true,
+          "fluid": false
+        },
+        {
+          "ingredient": "compressedAluminium:1",
+          "enabled": true,
+          "fluid": false
+        },
+        {
+          "ingredient": "compressedSteel:1",
+          "enabled": true,
+          "fluid": false
+        },
+        {
+          "ingredient": "liquidStainlessSteel:72",
+          "enabled": true,
+          "fluid": false
+        }
+      ],
+      "outputs": [
+        {
+          "ingredient": "heavyDutyAlloyIngot1:1",
+          "enabled": true,
+          "fluid": false
+        }
+      ],
+      "enabled": true
+    },
+    {
+      "inputs": [
+        {
+          "ingredient": "stainlessScrew:4",
+          "enabled": true,
+          "fluid": false
+        },
+        {
+          "ingredient": "blankFuelTank:1",
+          "enabled": true,
+          "fluid": false
+        },
+        {
+          "ingredient": "doubleCompressedBronze:1",
+          "enabled": true,
+          "fluid": false
+        },
+        {
+          "ingredient": "doubleCompressedAluminium:1",
+          "enabled": true,
+          "fluid": false
+        }
+      ],
+      "outputs": [
+        {
+          "ingredient": "fuelCanister1:1",
+          "enabled": true,
+          "fluid": false
+        }
+      ],
+      "enabled": true
+    },
+    {
+      "inputs": [
+        {
+          "ingredient": "sensorHV:1",
+          "enabled": true,
+          "fluid": false
+        },
+        {
+          "ingredient": "computerMonitor:1",
+          "enabled": true,
+          "fluid": false
+        },
+        {
+          "ingredient": "compressedAluminium:2",
+          "enabled": true,
+          "fluid": false
+        },
+        {
+          "ingredient": "compressedTin:2",
+          "enabled": true,
+          "fluid": false
+        }
+      ],
+      "outputs": [
+        {
+          "ingredient": "freqModule:1",
+          "enabled": true,
+          "fluid": false
+        }
+      ],
+      "enabled": true
+    },
+    {
+      "inputs": [
+        {
+          "ingredient": "stainlessSteel:1",
+          "enabled": true,
+          "fluid": false
+        }
+      ],
+      "outputs": [
+        {
+          "ingredient": "liquidStainlessSteel:144",
+          "enabled": true,
+          "fluid": false
+        }
+      ],
+      "enabled": true
+    },
+    {
+      "inputs": [
+        {
+          "ingredient": "sdhc:2",
+          "enabled": false,
+          "fluid": false
+        },
+        {
+          "ingredient": "emptyCanister:1",
+          "enabled": false,
+          "fluid": false
+        },
+        {
+          "ingredient": "firebox:1",
+          "enabled": false,
+          "fluid": false
+        },
+        {
+          "ingredient": "activityDetector:1",
+          "enabled": false,
+          "fluid": false
+        },
+        {
+          "ingredient": "heavyDutyPlate1:4",
+          "enabled": false,
+          "fluid": false
+        }
+      ],
+      "outputs": [
+        {
+          "ingredient": "booster1:1",
+          "enabled": false,
+          "fluid": false
+        }
+      ],
+      "enabled": true
+    },
+    {
+      "inputs": [
+        {
+          "ingredient": "rawSDHC:1",
+          "enabled": false,
+          "fluid": false
+        },
+        {
+          "ingredient": "powderBarrel:10",
+          "enabled": false,
+          "fluid": false
+        },
+        {
+          "ingredient": "iTNT:1",
+          "enabled": false,
+          "fluid": false
+        }
+      ],
+      "outputs": [
+        {
+          "ingredient": "sdhc:1",
+          "enabled": false,
+          "fluid": false
+        }
+      ],
+      "enabled": true
+    },
+    {
+      "inputs": [
+        {
+          "ingredient": "stainlessScrew:4",
+          "enabled": true,
+          "fluid": false
+        },
+        {
+          "ingredient": "doubleCompressedBronze:1",
+          "enabled": true,
+          "fluid": false
+        },
+        {
+          "ingredient": "doubleCompressedAluminium:1",
+          "enabled": true,
+          "fluid": false
+        },
+        {
+          "ingredient": "compressedCoal:1",
+          "enabled": true,
+          "fluid": false
+        }
+      ],
+      "outputs": [
+        {
+          "ingredient": "rawSDHC:1",
+          "enabled": true,
+          "fluid": false
+        }
+      ],
+      "enabled": true
+    },
+    {
+      "inputs": [
+        {
+          "ingredient": "rubberSheet:3",
+          "enabled": true,
+          "fluid": false
+        },
+        {
+          "ingredient": "compressedSteel:5",
+          "enabled": true,
+          "fluid": false
+        }
+      ],
+      "outputs": [
+        {
+          "ingredient": "seat:1",
+          "enabled": true,
+          "fluid": false
+        }
+      ],
+      "enabled": true
+    },
+    {
+      "inputs": [
+        {
+          "ingredient": "compressedSteel:2",
+          "enabled": true,
+          "fluid": false
+        }
+      ],
+      "outputs": [
+        {
+          "ingredient": "steelPole:1",
+          "enabled": true,
+          "fluid": false
+        }
+      ],
+      "enabled": true
+    },
+    {
+      "inputs": [
+        {
+          "ingredient": "compressedSteel:8",
+          "enabled": false,
+          "fluid": false
+        }
+      ],
+      "outputs": [
+        {
+          "ingredient": "blankFuelTank:1",
+          "enabled": false,
+          "fluid": false
+        }
+      ],
+      "enabled": true
+    },
+    {
+      "inputs": [
+        {
+          "ingredient": "T1Rocket:1",
+          "enabled": true,
+          "fluid": false
+        },
+        {
+          "ingredient": "fuelLoader:2",
+          "enabled": true,
+          "fluid": false
+        },
+        {
+          "ingredient": "launchPad:9",
+          "enabled": true,
+          "fluid": false
+        },
+        {
+          "ingredient": "spaceSuit:1",
+          "enabled": true,
+          "fluid": false
+        },
+        {
+          "ingredient": "rocketAssembler:1",
+          "enabled": true,
+          "fluid": false
+        }
+      ],
+      "outputs": [
+        {
+          "ingredient": "dummyRocketMission:1",
+          "enabled": true,
+          "fluid": false
+        }
+      ],
+      "enabled": true
+    },
+    {
+      "inputs": [
+        {
+          "ingredient": "steelRing:4",
+          "enabled": false,
+          "fluid": false
+        },
+        {
+          "ingredient": "compressedSteel:4",
+          "enabled": false,
+          "fluid": false
+        }
+      ],
+      "outputs": [
+        {
+          "ingredient": "emptyCanister:1",
+          "enabled": false,
+          "fluid": false
+        }
+      ],
+      "enabled": true
+    },
+    {
+      "inputs": [
+        {
+          "ingredient": "stainlessBolt:1",
+          "enabled": true,
+          "fluid": false
+        }
+      ],
+      "outputs": [
+        {
+          "ingredient": "stainlessScrew:1",
+          "enabled": true,
+          "fluid": false
+        }
+      ],
+      "enabled": true
+    },
+    {
+      "inputs": [
+        {
+          "ingredient": "stainlessSteel:1",
+          "enabled": true,
+          "fluid": false
+        }
+      ],
+      "outputs": [
+        {
+          "ingredient": "stainlessBolt:8",
+          "enabled": true,
+          "fluid": false
+        }
+      ],
+      "enabled": true
+    },
+    {
+      "inputs": [
+        {
+          "ingredient": "steel:1",
+          "enabled": true,
+          "fluid": false
+        }
+      ],
+      "outputs": [
+        {
+          "ingredient": "steelRing:4",
+          "enabled": true,
+          "fluid": false
+        }
+      ],
+      "enabled": true
+    },
+    {
+      "inputs": [
+        {
+          "ingredient": "steel:8",
+          "enabled": true,
+          "fluid": false
+        }
+      ],
+      "outputs": [
+        {
+          "ingredient": "firebox:1",
+          "enabled": true,
+          "fluid": false
+        }
+      ],
+      "enabled": true
+    },
+    {
+      "inputs": [
+        {
+          "ingredient": "compressedSteel:2",
+          "enabled": true,
+          "fluid": false
+        },
+        {
+          "ingredient": "pumpHV:1",
+          "enabled": true,
+          "fluid": false
+        },
+        {
+          "ingredient": "steelCell:1",
+          "enabled": true,
+          "fluid": false
+        },
+        {
+          "ingredient": "motorHV:1",
+          "enabled": true,
+          "fluid": false
+        },
+        {
+          "ingredient": "compressedAluminium:2",
+          "enabled": true,
+          "fluid": false
+        },
+        {
+          "ingredient": "steelPipe:1",
+          "enabled": true,
+          "fluid": false
+        }
+      ],
+      "outputs": [
+        {
+          "ingredient": "fuelLoader:1",
+          "enabled": true,
+          "fluid": false
+        }
+      ],
+      "enabled": true
+    },
+    {
+      "inputs": [
+        {
+          "ingredient": "compressedIron:3",
+          "enabled": true,
+          "fluid": false
+        },
+        {
+          "ingredient": "advancedAlloy:3",
+          "enabled": true,
+          "fluid": false
+        },
+        {
+          "ingredient": "ironBlock:3",
+          "enabled": true,
+          "fluid": false
+        }
+      ],
+      "outputs": [
+        {
+          "ingredient": "launchPad:3",
+          "enabled": true,
+          "fluid": false
+        }
+      ],
+      "enabled": true
+    },
+    {
+      "inputs": [
+        {
+          "ingredient": "steel:3",
+          "enabled": true,
+          "fluid": false
+        }
+      ],
+      "outputs": [
+        {
+          "ingredient": "steelPipe:1",
+          "enabled": true,
+          "fluid": false
+        }
+      ],
+      "enabled": true
+    },
+    {
+      "inputs": [
+        {
+          "ingredient": "steel:8",
+          "enabled": true,
+          "fluid": false
+        },
+        {
+          "ingredient": "bronze:1",
+          "enabled": true,
+          "fluid": false
+        },
+        {
+          "ingredient": "iTNT:1",
+          "enabled": true,
+          "fluid": false
+        }
+      ],
+      "outputs": [
+        {
+          "ingredient": "steelCell:1",
+          "enabled": true,
+          "fluid": false
+        }
+      ],
+      "enabled": true
+    },
+    {
+      "inputs": [
+        {
+          "ingredient": "aluminium:3",
+          "enabled": false,
+          "fluid": false
+        },
+        {
+          "ingredient": "powderBarrel:4",
+          "enabled": false,
+          "fluid": false
+        },
+        {
+          "ingredient": "iTNT:1",
+          "enabled": false,
+          "fluid": false
+        }
+      ],
+      "outputs": [
+        {
+          "ingredient": "compressedAluminium:1",
+          "enabled": false,
+          "fluid": false
+        }
+      ],
+      "enabled": true
+    },
+    {
+      "inputs": [
+        {
+          "ingredient": "bronze:3",
+          "enabled": false,
+          "fluid": false
+        },
+        {
+          "ingredient": "powderBarrel:4",
+          "enabled": false,
+          "fluid": false
+        },
+        {
+          "ingredient": "iTNT:1",
+          "enabled": false,
+          "fluid": false
+        }
+      ],
+      "outputs": [
+        {
+          "ingredient": "compressedBronze:1",
+          "enabled": false,
+          "fluid": false
+        }
+      ],
+      "enabled": true
+    },
+    {
+      "inputs": [
+        {
+          "ingredient": "coalBlock:1",
+          "enabled": false,
+          "fluid": false
+        },
+        {
+          "ingredient": "powderBarrel:2",
+          "enabled": false,
+          "fluid": false
+        },
+        {
+          "ingredient": "iTNT:1",
+          "enabled": false,
+          "fluid": false
+        }
+      ],
+      "outputs": [
+        {
+          "ingredient": "compressedCoal:1",
+          "enabled": false,
+          "fluid": false
+        }
+      ],
+      "enabled": true
+    },
+    {
+      "inputs": [
+        {
+          "ingredient": "iron:3",
+          "enabled": false,
+          "fluid": false
+        },
+        {
+          "ingredient": "powderBarrel:4",
+          "enabled": false,
+          "fluid": false
+        },
+        {
+          "ingredient": "iTNT:1",
+          "enabled": false,
+          "fluid": false
+        }
+      ],
+      "outputs": [
+        {
+          "ingredient": "compressedIron:1",
+          "enabled": false,
+          "fluid": false
+        }
+      ],
+      "enabled": true
+    },
+    {
+      "inputs": [
+        {
+          "ingredient": "iron:9",
+          "enabled": true,
+          "fluid": false
+        }
+      ],
+      "outputs": [
+        {
+          "ingredient": "ironBlock:1",
+          "enabled": true,
+          "fluid": false
+        }
+      ],
+      "enabled": true
+    },
+    {
+      "inputs": [
+        {
+          "ingredient": "steel:3",
+          "enabled": false,
+          "fluid": false
+        },
+        {
+          "ingredient": "powderBarrel:4",
+          "enabled": false,
+          "fluid": false
+        },
+        {
+          "ingredient": "iTNT:1",
+          "enabled": false,
+          "fluid": false
+        }
+      ],
+      "outputs": [
+        {
+          "ingredient": "compressedSteel:1",
+          "enabled": false,
+          "fluid": false
+        }
+      ],
+      "enabled": true
+    },
+    {
+      "inputs": [
+        {
+          "ingredient": "tin:3",
+          "enabled": false,
+          "fluid": false
+        },
+        {
+          "ingredient": "powderBarrel:4",
+          "enabled": false,
+          "fluid": false
+        },
+        {
+          "ingredient": "iTNT:1",
+          "enabled": false,
+          "fluid": false
+        }
+      ],
+      "outputs": [
+        {
+          "ingredient": "compressedTin:1",
+          "enabled": false,
+          "fluid": false
+        }
+      ],
+      "enabled": true
+    },
+    {
+      "inputs": [
+        {
+          "ingredient": "advancedRobot:3",
+          "enabled": false,
+          "fluid": false
+        },
+        {
+          "ingredient": "circuitIV:2",
+          "enabled": false,
+          "fluid": false
+        },
+        {
+          "ingredient": "display:1",
+          "enabled": false,
+          "fluid": false
+        },
+        {
+          "ingredient": "hardWall:2",
+          "enabled": false,
+          "fluid": false
+        },
+        {
+          "ingredient": "assemblerHV:1",
+          "enabled": false,
+          "fluid": false
+        }
+      ],
+      "outputs": [
+        {
+          "ingredient": "rocketAssembler:1",
+          "enabled": false,
+          "fluid": false
+        }
+      ],
+      "enabled": true
+    },
+    {
+      "inputs": [
+        {
+          "ingredient": "netherStarPlate:2",
+          "enabled": true,
+          "fluid": false
+        },
+        {
+          "ingredient": "sensorLens:1",
+          "enabled": true,
+          "fluid": false
+        },
+        {
+          "ingredient": "motorHV:1",
+          "enabled": true,
+          "fluid": false
+        },
+        {
+          "ingredient": "pistonHV:1",
+          "enabled": true,
+          "fluid": false
+        },
+        {
+          "ingredient": "robotArmHV:1",
+          "enabled": true,
+          "fluid": false
+        },
+        {
+          "ingredient": "longStainlessRod:2",
+          "enabled": true,
+          "fluid": false
+        },
+        {
+          "ingredient": "circuitEV:1",
+          "enabled": true,
+          "fluid": false
+        }
+      ],
+      "outputs": [
+        {
+          "ingredient": "advancedRobot:1",
+          "enabled": true,
+          "fluid": false
+        }
+      ],
+      "enabled": true
+    },
+    {
+      "inputs": [
+        {
+          "ingredient": "motorHV:2",
+          "enabled": false,
+          "fluid": false
+        },
+        {
+          "ingredient": "pistonHV:1",
+          "enabled": false,
+          "fluid": false
+        },
+        {
+          "ingredient": "stainlessRod:2",
+          "enabled": false,
+          "fluid": false
+        },
+        {
+          "ingredient": "circuitHV:1",
+          "enabled": false,
+          "fluid": false
+        },
+        {
+          "ingredient": "goldCable:3",
+          "enabled": false,
+          "fluid": false
+        }
+      ],
+      "outputs": [
+        {
+          "ingredient": "robotArmHV:1",
+          "enabled": false,
+          "fluid": false
+        }
+      ],
+      "enabled": true
+    },
+    {
+      "inputs": [
+        {
+          "ingredient": "stainlessSteel:1",
+          "enabled": true,
+          "fluid": false
+        }
+      ],
+      "outputs": [
+        {
+          "ingredient": "stainlessPlate:1",
+          "enabled": true,
+          "fluid": false
+        }
+      ],
+      "enabled": true
+    },
+    {
+      "inputs": [
+        {
+          "ingredient": "stainlessSteel:1",
+          "enabled": true,
+          "fluid": false
+        }
+      ],
+      "outputs": [
+        {
+          "ingredient": "stainlessRod:2",
+          "enabled": true,
+          "fluid": false
+        }
+      ],
+      "enabled": true
+    },
+    {
+      "inputs": [
+        {
+          "ingredient": "stainlessSteel:1",
+          "enabled": true,
+          "fluid": false
+        }
+      ],
+      "outputs": [
+        {
+          "ingredient": "stainlessSmallGear:1",
+          "enabled": true,
+          "fluid": false
+        }
+      ],
+      "enabled": true
+    },
+    {
+      "inputs": [
+        {
+          "ingredient": "noseCone1:1",
+          "enabled": true,
+          "fluid": false
+        },
+        {
+          "ingredient": "lander1:1",
+          "enabled": true,
+          "fluid": false
+        },
+        {
+          "ingredient": "heavyDutyPlate1:8",
+          "enabled": true,
+          "fluid": false
+        },
+        {
+          "ingredient": "fin1:8",
+          "enabled": true,
+          "fluid": false
+        },
+        {
+          "ingredient": "fuelCanister1:2",
+          "enabled": true,
+          "fluid": false
+        },
+        {
+          "ingredient": "guidanceChip1:1",
+          "enabled": true,
+          "fluid": false
+        },
+        {
+          "ingredient": "booster1:1",
+          "enabled": true,
+          "fluid": false
+        },
+        {
+          "ingredient": "goldChest:1",
+          "enabled": true,
+          "fluid": false
+        }
+      ],
+      "outputs": [
+        {
+          "ingredient": "T1Rocket:1",
+          "enabled": true,
+          "fluid": false
+        }
+      ],
+      "enabled": true
+    },
+    {
+      "inputs": [
+        {
+          "ingredient": "heavyDutyAlloyIngot1:1",
+          "enabled": false,
+          "fluid": false
+        },
+        {
+          "ingredient": "powderBarrel:10",
+          "enabled": false,
+          "fluid": false
+        },
+        {
+          "ingredient": "iTNT:2",
+          "enabled": false,
+          "fluid": false
+        }
+      ],
+      "outputs": [
+        {
+          "ingredient": "heavyDutyPlate1:1",
+          "enabled": false,
+          "fluid": false
+        }
+      ],
+      "enabled": true
+    },
+    {
+      "inputs": [
+        {
+          "ingredient": "compressedAluminium:2",
+          "enabled": true,
+          "fluid": false
+        },
+        {
+          "ingredient": "powderBarrel:2",
+          "enabled": true,
+          "fluid": false
+        },
+        {
+          "ingredient": "iTNT:1",
+          "enabled": true,
+          "fluid": false
+        }
+      ],
+      "outputs": [
+        {
+          "ingredient": "doubleCompressedAluminium:1",
+          "enabled": true,
+          "fluid": false
+        }
+      ],
+      "enabled": true
+    },
+    {
+      "inputs": [
+        {
+          "ingredient": "compressedBronze:2",
+          "enabled": true,
+          "fluid": false
+        },
+        {
+          "ingredient": "powderBarrel:2",
+          "enabled": true,
+          "fluid": false
+        },
+        {
+          "ingredient": "iTNT:1",
+          "enabled": true,
+          "fluid": false
+        }
+      ],
+      "outputs": [
+        {
+          "ingredient": "doubleCompressedBronze:1",
+          "enabled": true,
+          "fluid": false
+        }
+      ],
+      "enabled": true
+    },
+    {
+      "inputs": [
+        {
+          "ingredient": "computerMonitor:1",
+          "enabled": false,
+          "fluid": false
+        }
+      ],
+      "outputs": [
+        {
+          "ingredient": "display:1",
+          "enabled": false,
+          "fluid": false
+        }
+      ],
+      "enabled": true
+    },
+    {
+      "inputs": [
+        {
+          "ingredient": "redAlloyRing:2",
+          "enabled": false,
+          "fluid": false
+        },
+        {
+          "ingredient": "diamondLens:1",
+          "enabled": false,
+          "fluid": false
+        },
+        {
+          "ingredient": "circuitHV:2",
+          "enabled": false,
+          "fluid": false
+        },
+        {
+          "ingredient": "stainlessScrew:2",
+          "enabled": false,
+          "fluid": false
+        },
+        {
+          "ingredient": "reinforcedLens:1",
+          "enabled": false,
+          "fluid": false
+        }
+      ],
+      "outputs": [
+        {
+          "ingredient": "sensorLens:1",
+          "enabled": false,
+          "fluid": false
+        }
+      ],
+      "enabled": true
+    },
+    {
+      "inputs": [
+        {
+          "ingredient": "spaceSuitHelmet:1",
+          "enabled": false,
+          "fluid": false
+        },
+        {
+          "ingredient": "spaceSuitChest:1",
+          "enabled": false,
+          "fluid": false
+        },
+        {
+          "ingredient": "spaceSuitLegs:1",
+          "enabled": false,
+          "fluid": false
+        },
+        {
+          "ingredient": "spaceSuitFeet:1",
+          "enabled": false,
+          "fluid": false
+        }
+      ],
+      "outputs": [
+        {
+          "ingredient": "spaceSuit:1",
+          "enabled": false,
+          "fluid": false
+        }
+      ],
+      "enabled": true
+    },
+    {
+      "inputs": [
+        {
+          "ingredient": "toluene:4",
+          "enabled": false,
+          "fluid": false
+        },
+        {
+          "ingredient": "nitrationMixture:200",
+          "enabled": false,
+          "fluid": true
+        }
+      ],
+      "outputs": [
+        {
+          "ingredient": "iTNT:1",
+          "enabled": false,
+          "fluid": false
+        }
+      ],
+      "enabled": true
+    },
+    {
+      "inputs": [
+        {
+          "ingredient": "sulfuricAcid:1000",
+          "enabled": true,
+          "fluid": true
+        },
+        {
+          "ingredient": "nitricAcid:1000",
+          "enabled": true,
+          "fluid": true
+        }
+      ],
+      "outputs": [
+        {
+          "ingredient": "nitrationMixture:2000",
+          "enabled": true,
+          "fluid": true
+        }
+      ],
+      "enabled": true
+    }
+  ]
+}
