@@ -7,14 +7,13 @@ Charles Johnson (johnch18@isu.edu)
 10/27/2022
 """
 
-
 __all__ = []
 
 import re
 from abc import ABC, abstractmethod
 from collections import defaultdict
 from dataclasses import dataclass
-from typing import ClassVar, TypeVar, Callable, Generic
+from typing import Callable, ClassVar, Generic, Iterator, Type, TypeVar, cast
 
 
 def snake_to_canonical(snake: str) -> str:
@@ -37,7 +36,8 @@ class KeyCollection(Generic[K, V], dict):
     type (V) -> K
     """
 
-    def __init__(self, key_func: Callable[[V], K], *args: V):
+    def __init__(self, key_func: Callable[[V], K] = lambda x: x.__hash__,
+                 *args: V):
         super().__init__()
         self.key_func = key_func
         self.add_elements(*args)
@@ -45,6 +45,10 @@ class KeyCollection(Generic[K, V], dict):
     def __repr__(self) -> str:
         el_string = ", ".join(repr(self[key]) for key in sorted(self.keys()))
         return f"{type(self).__name__}({el_string})"
+
+    def __iter__(self) -> Iterator[V]:
+        for key in sorted(self.keys()):
+            yield self[key]
 
     def add_element(self, elem: V):
         """
@@ -248,13 +252,29 @@ class RecipeTable:
     Stores the mappings of Recipes and Items
     """
 
+    entry_type: TypeVar = [KeyCollection[int, Recipe]]
+    mapping_type: TypeVar = defaultdict[Item, entry_type]
+
     def __init__(self):
-        self.table: dict[Item, list[Recipe]] = defaultdict(list)
+        self.back_table: RecipeTable.mapping_type = defaultdict(
+                KeyCollection
+        )
+        self.forward_table: RecipeTable.mapping_type = defaultdict(
+            KeyCollection
+        )
+
+    def add_recipe(self, recipe: Recipe):
+        for entry in recipe.output_item_stacks:
+            self.back_table[entry.item].add_element(recipe)
+        for entry in recipe.input_item_stacks:
+            self.forward_table[entry.item].add_element(recipe)
 
 
 def main():
-    test: Recipe = Recipe.from_string("<wood_log:0> -> <wood_plank:0>:4:1.0")
-    print(test.to_string())
+    table = RecipeTable()
+    table.add_recipe(Recipe.from_string("<wood_log:0> -> <wood_plank:0>:4:1.0"))
+    print(table.back_table)
+    print(table.forward_table)
 
 
 if __name__ == "__main__":
