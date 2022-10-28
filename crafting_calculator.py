@@ -1,6 +1,13 @@
 #!/usr/bin/python3.11
 
 
+"""
+crafting_calculator.py
+Charles Johnson (johnch18@isu.edu)
+10/27/2022
+"""
+
+
 __all__ = []
 
 import re
@@ -8,6 +15,17 @@ from abc import ABC, abstractmethod
 from collections import defaultdict
 from dataclasses import dataclass
 from typing import ClassVar, TypeVar, Callable, Generic
+
+
+def snake_to_canonical(snake: str) -> str:
+    """
+    Converts a snake-case name to a canonical name.
+    e.g. 'foo_bar_baz' -> 'Foo Bar Baz'
+    :param snake: snake-case name
+    :return: Canonical name
+    """
+    return " ".join(s.capitalize() for s in snake.split("_"))
+
 
 K = TypeVar("K", bound="KeyCollection")
 V = TypeVar("V", bound="KeyCollection")
@@ -40,21 +58,16 @@ class KeyCollection(Generic[K, V], dict):
         Adds multiple elements
         :param elems: elements to add
         """
-        for e in elems:
-            self.add_element(e)
+        for elem in elems:
+            self.add_element(elem)
 
     def contains_element(self, elem: V) -> bool:
+        """
+        Checks if the element is contained in the collection
+        :param elem: Element to check
+        :return: Whether it is present
+        """
         return self.key_func(elem) in self
-
-
-def snake_to_canonical(snake: str) -> str:
-    """
-    Converts a snake-case name to a canonical name.
-    e.g. 'foo_bar_baz' -> 'Foo Bar Baz'
-    :param snake: snake-case name
-    :return: Canonical name
-    """
-    return " ".join(s.capitalize() for s in snake.split("_"))
 
 
 class ISerializable(ABC):
@@ -161,14 +174,14 @@ class ItemStack(ISerializable):
         chance_string: str
         # Match using regex
         matches = re.match(cls.regex, item_stack_string)
-        item_string, amount_string, chance_string = matches.groups()
+        item_name, amount_string, chance_string = matches.groups()
         # Correct improper values
         if not amount_string:
             amount_string = "1"
         if not chance_string:
             chance_string = "1.0"
         # Convert values
-        item: Item = Item.from_string(item_string)
+        item: Item = Item.from_string(item_name)
         amount: int = int(amount_string)
         chance: float = float(chance_string)
         return cls(item, amount, chance)
@@ -236,7 +249,7 @@ class RecipeTable:
     """
 
     def __init__(self):
-        self.table: dict[Item, list[Recipe]] = defaultdict(lambda: list())
+        self.table: dict[Item, list[Recipe]] = defaultdict(list)
 
 
 def main():
