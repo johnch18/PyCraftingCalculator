@@ -1,12 +1,13 @@
 #!/usr/bin/python3.11
 
 
-__all__ = []
+__all__ = ["RecipeTrie"]
 
 from abc import ABC, abstractmethod
 from dataclasses import dataclass, field
 from typing import Any, Callable, Iterable, Iterator, Optional, cast
 
+from inventory import Inventory
 from item import Item
 from recipe import Recipe
 from utility.ireprable import IReprable
@@ -236,7 +237,7 @@ class RootNode(ParentNode):
 @dataclass
 class BranchNode(ParentNode, ChildNode):
     """
-    Internal node that stores keys in the form of items
+    Internal node that stores keys in the form of inputs
     """
     item: Item = field(default=None)
 
@@ -246,7 +247,7 @@ class BranchNode(ParentNode, ChildNode):
         for child_index, child in enumerate(self.children):
             lines = child.get_line_representation(depth + 1, repr_func)
             for line_index, line in enumerate(lines):
-                if child_index < self.num_children - 1 or line_index == 0:
+                if child_index < self.num_children - 1 or line_index <= 0:
                     yield f"{spacer}|{line}"
                 else:
                     yield f" {spacer}{line}"
@@ -278,15 +279,13 @@ class Trie(ABC):
         Iterates through leaves
         :return: ^
         """
-        # Find first leaf
-        current: Node = self.root
-        while isinstance(current, ParentNode):
-            current = current.first_child
-        # Yield leaves
-        current: DoublyLinkedListNode = cast(DoublyLinkedListNode, current)
-        while current is not None:
-            yield current
-            current = current.next
+        queue: list[Node] = [self.root]
+        while queue:
+            current: Node = queue.pop(0)
+            if isinstance(current, ParentNode):
+                queue.extend(current.children)
+            elif isinstance(current, LeafNode):
+                yield current
 
 
 class RecipeTrie(Trie, IReprable):
@@ -329,10 +328,14 @@ class RecipeTrie(Trie, IReprable):
                 new_node: BranchNode = BranchNode(master=self, item=item)
                 current_node.add_child(new_node)
                 current_node = new_node
-        # Create leaf
-        new_leaf: LeafNode = LeafNode(master=self, recipe=recipe)
-        current_node.add_child(new_leaf)
-        return new_leaf
+        # Create leaf if it doesn't already exist
+        for child in current_node:
+            if isinstance(child, LeafNode) and child.recipe == recipe:
+                return child
+        else:
+            new_leaf: LeafNode = LeafNode(master=self, recipe=recipe)
+            current_node.add_child(new_leaf)
+            return new_leaf
 
     def add_recipes(self, recipe_list: Iterable[Recipe]):
         """
@@ -341,6 +344,26 @@ class RecipeTrie(Trie, IReprable):
         """
         for recipe in recipe_list:
             self.add_recipe(recipe)
+
+    def get_possible_recipes(self, inputs: Inventory) -> Iterable[Recipe]:
+        """
+        Calculates craftable recipes given a set of inputs
+        :param inputs: Inputs
+        :return: Recipes
+        """
+        queue: list[Node] = self.root.children
+        current_node: Node
+        while queue:
+            current_node = queue.pop(0)
+            # If it's a branch that matches one of the inputs, add children to BFS
+            if isinstance(current_node, BranchNode):
+                # Find matching node
+                for stack in inputs:
+                    if current_node.item == stack.item:
+                        queue.extend(current_node.children)
+            # Add leaves
+            elif isinstance(current_node, LeafNode):
+                yield current_node
 
     def find_recipe_node(self, recipe: Recipe) -> Optional[LeafNode]:
         """
@@ -372,6 +395,11 @@ class RecipeTrie(Trie, IReprable):
                 return child
 
     def pop_recipe(self, recipe: Recipe) -> Optional[Recipe]:
+        """
+        Removes recipe from tree
+        :param recipe: Target
+        :return: Removed object
+        """
         recipe_node: LeafNode = self.find_recipe_node(recipe)
         if not recipe_node:
             return None
@@ -383,19 +411,15 @@ class RecipeTrie(Trie, IReprable):
 
 
 def main():
-    test = RecipeTrie(Recipe.from_string("<wood_log> -> <wood_plank>:4"),
-                      Recipe.from_string("<wood_plank>:2 -> <stick>:4"),
-                      Recipe.from_string("<wood_plank>:4 -> <crafting_bench>"),
-                      Recipe.from_string("<wood_plank>:3 + <stick>:2 -> <wood_pickaxe>"),
-                      Recipe.from_string("<wood_plank>:3 + <stick>:2 -> <wood_axe>"),
-                      Recipe.from_string("<cobblestone>:3 + <stick>:2 -> <stone_pickaxe>"),
+    test = RecipeTrie(Recipe.from_string("<wood_log> -> <wood_plank>:4"), Recipe.from_string("<wood_plank>:2 -> <stick>:4"),
+                      Recipe.from_string("<wood_plank>:4 -> <crafting_bench>"), Recipe.from_string("<wood_plank>:3 + <stick>:2 -> <wood_pickaxe>"),
+                      Recipe.from_string("<wood_plank>:3 + <stick>:2 -> <wood_axe>"), Recipe.from_string("<cobblestone>:3 + <stick>:2 -> <stone_pickaxe>"),
                       Recipe.from_string("<obsidian>:4 + <book> + <diamond>:2 -> <enchanting_table>"),
                       Recipe.from_string("<iron_ore> -> <crushed_iron_ore>:2 + <stone_dust>:1:0.1111"),
                       Recipe.from_string("<wood_plank>:4 + <stick>:4 + <screwdriver>:1:0.0 -> <wood_gear>"))
     print(test.fancy_string())
-    test.pop_recipe(Recipe.from_string("<wood_log> -> <wood_plank>:4"))
-    print("\nRemoving")
-    print(test.fancy_string())
+    test_inventory = Inventory.from_string("<wood_log>:16, <stick>:8")
+    print(*test.get_possible_recipes(test_inventory))
 
 
 if __name__ == "__main__":

@@ -67,7 +67,7 @@ class Inventory(ISerializable, dict[Item, ItemStack]):
 
     def sub_item_stack(self, i_stack: ItemStack) -> int:
         """
-        Removes items from an inventory, as many as it can without making it
+        Removes inputs from an inventory, as many as it can without making it
         go negative
         :param i_stack: Stack to subtract
         :return: Number subtracted

@@ -16,7 +16,7 @@ from utility.iserializable import ISerializable
 @dataclass(unsafe_hash=True, order=True)
 class ItemStack(ISerializable, IReprable):
     """
-    A group of items of a given type with cardinality and an associated
+    A group of inputs of a given type with cardinality and an associated
     percentage
     """
 
@@ -90,7 +90,7 @@ class ItemStack(ISerializable, IReprable):
     def is_superstack(self, other: "ItemStack") -> bool:
         """
         Checks if this stack is of the same type and has as much or more
-        items than the factor stack.
+        inputs than the factor stack.
         e.g. 32 Iron Ingots is a superstack of 8 Iron Ingots
         :param other: stack to check
         :return: If it's a superstack
@@ -109,7 +109,7 @@ class ItemStack(ISerializable, IReprable):
         if self.chance <= 0:
             percent_str = f" (Not Consumed)"
         else:
-            percent_str = f" ({self.chance*100:.2f}%)" if self.chance != 1.0 else ""
+            percent_str = f" ({self.chance * 100:.2f}%)" if self.chance != 1.0 else ""
         return f"{amt_str}{self.item.fancy_string()}{percent_str}"
 
 
