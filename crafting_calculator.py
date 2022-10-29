@@ -30,10 +30,10 @@ def main():
         )
     print("Cost:")
     for stack in cost:
-        print("\t", stack.fancy_repr())
+        print("\t", stack.fancy_string())
     print("Leftover:")
     for stack in leftover:
-        print("\t", stack.fancy_repr())
+        print("\t", stack.fancy_string())
 
 
 if __name__ == "__main__":

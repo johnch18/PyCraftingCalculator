@@ -7,12 +7,13 @@ import re
 from dataclasses import dataclass, field
 from typing import ClassVar, TypeVar
 
+from utility.ireprable import IReprable
 from utility.iserializable import ISerializable
 from utility.misc import snake_to_canonical
 
 
 @dataclass(unsafe_hash=True, order=True)
-class Item(ISerializable):
+class Item(ISerializable, IReprable):
     """
     An object which has an id, a name, and metadata
     """
@@ -68,6 +69,9 @@ class Item(ISerializable):
             metadata = int(metadata_string)
             metadata_any = False
         return cls(item_name, metadata, metadata_any=metadata_any)
+
+    def fancy_string(self) -> str:
+        return self.canonical_name + (f":{self.metadata}" if self.metadata != 0 else "")
 
 
 def main():

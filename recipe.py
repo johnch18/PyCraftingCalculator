@@ -9,11 +9,12 @@ from typing import ClassVar, TypeVar
 from inventory import Inventory
 from item import Item
 from item_stack import ItemStack
+from utility.ireprable import IReprable
 from utility.iserializable import ISerializable
 
 
 @dataclass(unsafe_hash=True, order=True)
-class Recipe(ISerializable):
+class Recipe(ISerializable, IReprable):
     """
     A mapping of ItemStack inputs to outputs
     """
@@ -61,6 +62,11 @@ class Recipe(ISerializable):
         """
         inputs = " + ".join(item_stack.to_string() for item_stack in self.input_item_stacks)
         outputs = " + ".join(item_stack.to_string() for item_stack in self.output_item_stacks)
+        return f"{inputs} -> {outputs}"
+
+    def fancy_string(self) -> str:
+        inputs = " + ".join(item_stack.fancy_string() for item_stack in self.input_item_stacks)
+        outputs = " + ".join(item_stack.fancy_string() for item_stack in self.output_item_stacks)
         return f"{inputs} -> {outputs}"
 
     def set_priority(self, priority: int) -> "Recipe":

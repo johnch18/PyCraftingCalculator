@@ -75,6 +75,8 @@ class RecipeMapper:
         queue.extend(target.values())
         while queue:
             stack = queue.pop(0)
+            if stack.chance <= 0:
+                continue
             item = stack.item
             # Check cache for item
             if item in cache:

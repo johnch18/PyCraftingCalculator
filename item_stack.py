@@ -9,11 +9,12 @@ from dataclasses import dataclass, field
 from typing import ClassVar, TypeVar
 
 from item import Item
+from utility.ireprable import IReprable
 from utility.iserializable import ISerializable
 
 
 @dataclass(unsafe_hash=True, order=True)
-class ItemStack(ISerializable):
+class ItemStack(ISerializable, IReprable):
     """
     A group of items of a given type with cardinality and an associated
     percentage
@@ -98,14 +99,18 @@ class ItemStack(ISerializable):
             return False
         return self.amount >= other.amount
 
-    def fancy_repr(self) -> str:
+    def fancy_string(self) -> str:
         """
         Returns a nicely-formatted string representation of the stack
         :return: ^
         """
-        amt_str: str = f"{self.amount} x " if self.amount > 1 else ""
-        metadata_str: str = f":{self.item.metadata}" if self.item.metadata > 0 else ""
-        return f"{amt_str}{self.item.canonical_name}{metadata_str}"
+        amt_str: str = f"{self.amount}x " if self.amount > 1 else ""
+        percent_str: str
+        if self.chance <= 0:
+            percent_str = f" (Not Consumed)"
+        else:
+            percent_str = f" ({self.chance*100:.2f}%)" if self.chance != 1.0 else ""
+        return f"{amt_str}{self.item.fancy_string()}{percent_str}"
 
 
 def main():
