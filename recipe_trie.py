@@ -9,10 +9,10 @@ from typing import Any, Callable, Iterable, Iterator, Optional, cast
 
 from item import Item
 from recipe import Recipe
-
-# Abstract Nodes
 from utility.ireprable import IReprable
 
+
+# Abstract Nodes
 
 @dataclass
 class Node(ABC):
@@ -37,6 +37,12 @@ class Node(ABC):
         :return: Yields lines
         """
 
+    @abstractmethod
+    def remove_from_parent(self):
+        """
+        Removes this node from its parent
+        """
+
 
 @dataclass
 class ParentNode(Node, ABC):
@@ -54,23 +60,54 @@ class ParentNode(Node, ABC):
 
     @property
     def num_children(self) -> int:
+        """
+        Gets how many children node has
+        :return: ^
+        """
         return len(self.children)
 
     @property
     def first_child(self) -> Optional["ChildNode"]:
+        """
+        Gets the first child in self.children
+        :return: ^
+        """
         if self.num_children > 0:
             return self.children[0]
         return None
 
     @property
     def last_child(self) -> Optional["ChildNode"]:
+        """
+        Gets last child in self.children
+        :return: ^
+        """
         if self.num_children > 0:
             return self.children[-1]
         return None
 
     def add_child(self, child: "ChildNode"):
+        """
+        Adds and links child
+        :param child: child to add
+        """
         self.children.append(child)
         child.parent = self
+
+    def remove_child(self, child: "ChildNode"):
+        """
+        Removes child from its parent
+        :param child: Child to remove
+        """
+        self.children.remove(child)
+        self.prune()
+
+    def prune(self):
+        """
+        Cleans up dead branches
+        """
+        if self.num_children < 1:
+            self.remove_from_parent()
 
 
 @dataclass
@@ -153,13 +190,13 @@ class ChildNode(Node, ABC):
         """
         return self.parent is None
 
-
-@dataclass
-class VertexNode(DoublyLinkedListNode, ChildNode, ABC):
-    """
-    Combination of Linked List and Tree nodes, think of it like a cross, DLL Node is horizontal, Child Node is vertical.
-    DLL and Child Nodes are separated for clarity
-    """
+    def remove_from_parent(self):
+        """
+        Removes this node from its parent
+        """
+        if self.is_orphan:
+            return
+        self.parent.remove_child(self)
 
 
 # Concrete Nodes
@@ -171,6 +208,11 @@ class RootNode(ParentNode):
     Start of the trie, has no properties aside from being a parent
     """
 
+    def remove_from_parent(self):
+        """
+        Do nothing
+        """
+
     def to_string(self, repr_func: Callable[[Any], str]) -> str:
         """
         Gets string representation of tree from root
@@ -181,7 +223,7 @@ class RootNode(ParentNode):
 
     def get_line_representation(self, depth: int = 0, repr_func: Callable[[Any], str] = repr) -> Iterable[str]:
         for child_index, child in enumerate(self.children):
-            lines = child.get_line_representation(depth+1, repr_func)
+            lines = child.get_line_representation(depth + 1, repr_func)
             for line_index, line in enumerate(lines):
                 if child_index < self.num_children - 1 or line_index == 0:
                     yield f"|{line}"
@@ -211,14 +253,14 @@ class BranchNode(ParentNode, ChildNode):
 
 
 @dataclass
-class LeafNode(VertexNode):
+class LeafNode(ChildNode, DoublyLinkedListNode):
     """
     External node that stores values in the form of recipes
     """
     recipe: Recipe = field(default=None, hash=True, compare=True)
 
     def get_line_representation(self, depth: int = 0, repr_func: Callable[[Any], str] = repr) -> Iterable[str]:
-        yield f"---- {repr_func(self.recipe)}"
+        yield f"--------> {repr_func(self.recipe)}"
 
 
 # Trie
@@ -273,16 +315,21 @@ class RecipeTrie(Trie, IReprable):
         :return: Node containing recipe
         """
         current_node = self.root
+        # Iterate through inputs
         for stack in recipe.input_item_stacks:
             item = stack.item
+            # Search for child node with item as key
             for child_node in current_node:
+                # Node found, descend
                 if isinstance(child_node, BranchNode) and cast(BranchNode, child_node).item == item:
                     current_node = child_node
                     break
+            # Node not found, create it
             else:
                 new_node: BranchNode = BranchNode(master=self, item=item)
                 current_node.add_child(new_node)
                 current_node = new_node
+        # Create leaf
         new_leaf: LeafNode = LeafNode(master=self, recipe=recipe)
         current_node.add_child(new_leaf)
         return new_leaf
@@ -295,22 +342,59 @@ class RecipeTrie(Trie, IReprable):
         for recipe in recipe_list:
             self.add_recipe(recipe)
 
+    def find_recipe_node(self, recipe: Recipe) -> Optional[LeafNode]:
+        """
+        Locates a node via a recipe
+        :param recipe: Target Recipe
+        :return: Node it resides in
+        """
+        current_base: Node = self.root
+        # BFS
+        for stack in recipe.input_item_stacks:
+            queue: list[Node] = list()
+            queue.append(current_base)
+            current_node: Node
+            while queue:
+                current_node = queue.pop(0)
+                # Check if the requisite item is found
+                # If it is, advance down the tree
+                if isinstance(current_node, BranchNode) and cast(BranchNode, current_node).item == stack.item:
+                    current_base = current_node
+                    break
+                # Add non-leaves to BFS
+                for child in cast(BranchNode, current_node):
+                    if not isinstance(child, LeafNode):
+                        queue.append(child)
+            else:
+                return None
+        for child in cast(BranchNode, current_base):
+            if isinstance(child, LeafNode) and child.recipe == recipe:
+                return child
+
+    def pop_recipe(self, recipe: Recipe) -> Optional[Recipe]:
+        recipe_node: LeafNode = self.find_recipe_node(recipe)
+        if not recipe_node:
+            return None
+        recipe_node.remove_from_parent()
+        return recipe_node.recipe
+
     def fancy_string(self) -> str:
         return self.root.to_string(repr_func=lambda i: i.fancy_string())
 
 
 def main():
-    test = RecipeTrie(
-        Recipe.from_string("<wood_log> -> <wood_plank>:4"),
-        Recipe.from_string("<wood_plank>:2 -> <stick>:4"),
-        Recipe.from_string("<wood_plank>:4 -> <crafting_bench>"),
-        Recipe.from_string("<wood_plank>:3 + <stick>:2 -> <wood_pickaxe>"),
-        Recipe.from_string("<wood_plank>:3 + <stick>:2 -> <wood_axe>"),
-        Recipe.from_string("<cobblestone>:3 + <stick>:2 -> <stone_pickaxe>"),
-        Recipe.from_string("<obsidian>:4 + <book> + <diamond>:2 -> <enchanting_table>"),
-        Recipe.from_string("<iron_ore> -> <crushed_iron_ore>:2 + <stone_dust>:1:0.1111"),
-        Recipe.from_string("<wood_plank>:4 + <stick>:4 + <screwdriver>:1:0.0 -> <wood_gear>")
-        )
+    test = RecipeTrie(Recipe.from_string("<wood_log> -> <wood_plank>:4"),
+                      Recipe.from_string("<wood_plank>:2 -> <stick>:4"),
+                      Recipe.from_string("<wood_plank>:4 -> <crafting_bench>"),
+                      Recipe.from_string("<wood_plank>:3 + <stick>:2 -> <wood_pickaxe>"),
+                      Recipe.from_string("<wood_plank>:3 + <stick>:2 -> <wood_axe>"),
+                      Recipe.from_string("<cobblestone>:3 + <stick>:2 -> <stone_pickaxe>"),
+                      Recipe.from_string("<obsidian>:4 + <book> + <diamond>:2 -> <enchanting_table>"),
+                      Recipe.from_string("<iron_ore> -> <crushed_iron_ore>:2 + <stone_dust>:1:0.1111"),
+                      Recipe.from_string("<wood_plank>:4 + <stick>:4 + <screwdriver>:1:0.0 -> <wood_gear>"))
+    print(test.fancy_string())
+    test.pop_recipe(Recipe.from_string("<wood_log> -> <wood_plank>:4"))
+    print("\nRemoving")
     print(test.fancy_string())
 
 
