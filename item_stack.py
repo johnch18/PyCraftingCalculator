@@ -46,7 +46,6 @@ class ItemStack(ISerializable, IReprable):
         matches = re.match(cls.regex, item_stack_string)
         if not matches:
             return None
-        # print(item_stack_string, cls.regex, matches)
         item_name, amount_string, chance_string = matches.groups()
         # Correct improper values
         if not amount_string:
