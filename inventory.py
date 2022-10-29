@@ -31,6 +31,22 @@ class Inventory(ISerializable, dict[Item, ItemStack]):
         # noinspection PyTypeChecker
         yield from (self[k] for k in sorted(self.keys()))
 
+    @property
+    def total_items(self) -> int:
+        """
+        Gets the total number of items in the inventory
+        :return: ^
+        """
+        return sum(stack.amount for stack in self)
+
+    @property
+    def item_type_count(self) -> int:
+        """
+        Gets the amount of different items in the inventory
+        :return: ^
+        """
+        return sum(1 for _ in self)
+
     def to_string(self) -> str:
         """
         Serializes to string

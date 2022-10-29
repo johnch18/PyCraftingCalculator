@@ -6,7 +6,7 @@ __all__ = ["ItemStack"]
 import math
 import re
 from dataclasses import dataclass, field
-from typing import ClassVar, TypeVar
+from typing import ClassVar, Optional, TypeVar
 
 from item import Item
 from utility.ireprable import IReprable
@@ -23,6 +23,7 @@ class ItemStack(ISerializable, IReprable):
     item: Item  # The item
     amount: int = field(default=1, hash=False, compare=False)  # Item amount
     chance: float = field(default=1.0, hash=False, compare=False)  # Item chance
+    consumed: bool = field(default=True, hash=False, compare=False)  # If it's consumed
 
     regex: ClassVar[str] = r"(<[a-zA-Z]\w*:?[\d*]*>):?(\d*)?:?(\d*\.\d*)?"
 
@@ -32,7 +33,7 @@ class ItemStack(ISerializable, IReprable):
     T: ClassVar[TypeVar] = TypeVar("T", bound="ItemStack")
 
     @classmethod
-    def from_string(cls: T, item_stack_string: str) -> T:
+    def from_string(cls: T, item_stack_string: str) -> Optional[T]:
         """
         String factory for ItemStack
         :param item_stack_string: string to parse
@@ -43,6 +44,8 @@ class ItemStack(ISerializable, IReprable):
         chance_string: str
         # Match using regex
         matches = re.match(cls.regex, item_stack_string)
+        if not matches:
+            return None
         # print(item_stack_string, cls.regex, matches)
         item_name, amount_string, chance_string = matches.groups()
         # Correct improper values

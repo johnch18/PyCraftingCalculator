@@ -9,7 +9,7 @@ from typing import Any, Callable, Iterable, Iterator, Optional, cast
 
 from inventory import Inventory
 from item import Item
-from recipe import Recipe
+from recipe.recipe import Recipe
 from utility.ireprable import IReprable
 
 

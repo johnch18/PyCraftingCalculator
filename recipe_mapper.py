@@ -9,7 +9,7 @@ from collections import defaultdict
 from inventory import Inventory
 from item import Item
 from item_stack import ItemStack
-from recipe import Recipe
+from recipe.recipe import Recipe
 from recipe_trie import RecipeTrie
 
 

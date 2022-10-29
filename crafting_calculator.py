@@ -10,11 +10,14 @@ Charles Johnson (johnch18@isu.edu)
 __all__ = []
 
 from inventory import Inventory
-from recipe import Recipe
+from item import Item
+from item_stack import ItemStack
+from recipe.recipe import Recipe
+from recipe.crafting_table_recipe import CraftingTableRecipe
 from recipe_mapper import RecipeMapper
 
 
-def main():
+def test1():
     table = RecipeMapper()
     table.add_recipe(Recipe.from_string("<wood_log> -> <wood_plank>:4"))
     table.add_recipe(Recipe.from_string("<wood_log> -> <wood_plank>:6 + <wood_pulp>:1").set_priority(1))
@@ -24,16 +27,18 @@ def main():
     table.add_recipe(Recipe.from_string("<tiny_nether_star_dust> + <magma_cream> -> <nether_star>"))
     table.add_recipe(Recipe.from_string("<nether_star> -> <tiny_nether_star_dust>:9"))
     #
-    cost, leftover = table.calculate_cost(
-        Inventory.from_string("<nether_star>:64"),
-        Inventory.from_string("<tiny_nether_star_dust>:9")
-        )
+    cost, leftover = table.calculate_cost(Inventory.from_string("<nether_star>:64"), Inventory.from_string("<tiny_nether_star_dust>:9"))
     print("Cost:")
     for stack in cost:
         print("\t", stack.fancy_string())
     print("Leftover:")
     for stack in leftover:
         print("\t", stack.fancy_string())
+
+
+def main():
+    test = CraftingTableRecipe(ItemStack.from_string("<diamond>:64"), ("DDD", "DDD", "DDD"), D=Item.from_string("<dirt>"))
+    print(test.input_item_stacks)
 
 
 if __name__ == "__main__":
